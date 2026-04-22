@@ -90,12 +90,14 @@ function addName(firstName, lastName) {
 // 2.
 // greet the user with fullName
 function greet(name) {
-    console.log("Hello " + name + "!");
+    const greeting = "Hello " + name + "!";
+    return greeting;
 }
-greet(fullName);
 
 // DOM
-document.getElementById("title").innerText = greet(fullName);
+const title = greet(fullName);
+console.log(title);
+document.getElementById("title").innerText = title;
 
 /**
  * One responsibility per function!
