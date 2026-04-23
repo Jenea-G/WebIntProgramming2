@@ -14,7 +14,7 @@ console.log("end"); // 3
 // different execution
 console.log('=================');
 console.log("now with time interval");
-console.log("start"); 
+console.log("start");
 
 // we could use setTimeout(), to run the code
 // after a certain amount of time
@@ -80,12 +80,12 @@ const topics = ["Big Ben", "Statue of Liberty", "Chichen Itza"];
 
 const topicList = document.getElementById("topic-list");
 
-for(const topic of topics) {
+for (const topic of topics) {
     const li = document.createElement('li');
     li.textContent = topic;
 
     topicList.append(li);
-   
+
 }
 
 /**
@@ -99,9 +99,33 @@ console.log(button);
 
 button.addEventListener("click", () => {
     console.log("Button clicked.");
+    output.textContent = "Oh hello there!";
+});
+// the example above is also a continuation/callback!
+
+// READ an input on click
+
+const nameInput = document.getElementById("name-input");
+
+button.addEventListener("click", () => {
+    // we are reading the text input!
+    const name = nameInput.value.trim();
+    output.textContent = "Oh hello " + name + "!";
 });
 
-// the example above is also a continuation/callback!
+/**
+ * input event
+ */
+
+const previewOutput = document.getElementById("preview-output");
+
+// typing/input as an event
+nameInput.addEventListener("input", () => {
+    console.log("typing...")
+    previewOutput.textContent = `Typing ${nameInput.value}`;
+});
+
+
 
 
 
