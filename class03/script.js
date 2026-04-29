@@ -88,3 +88,66 @@ myPromise
 // A Promise is not magic
 // It is often wrapping asynchronous work.
 // such as timer, or HTTP requests
+
+//======================
+
+// Delayed success or failure
+
+// const success2 = false;
+
+// const myPromise2 = new Promise((resolve, regect) => {
+//     if (success2) {
+//     setTimeout(() => {
+//         resolve("data loaded");
+//     }, 1000); 
+// } else {
+//     setTimeout(() => {
+//         regect("data didn't load");
+//     }, 1000); 
+
+// }
+// });
+
+// // uncaught --> didn't catch! (doesn't have a catch)
+
+// myPromise2.then((result) => {
+//     console.log(result);
+// })
+// .catch((error) => {
+//     // catch here is useful to handle errors
+//     console.log(error);
+// });
+
+//===============
+
+// let's have a promise inside of a function
+function checkNumber(newNumber){
+    const promise = new Promise((resolve,reject) => {
+        if (newNumber > 10) {
+            resolve("number is greater than 10");
+        } else {
+            reject("Number is 10 or less");
+        }
+    })
+    return promise;
+}
+
+console.log("-------------")
+const number = 10;
+const number2 = 15;
+
+checkNumber(number) // 10
+.then((result) => {
+    console.log(result);
+})
+.catch((error) => {
+    console.log(error);
+})
+
+checkNumber(number2) // 15
+.then((result) => {
+    console.log(result);
+})
+.catch((error) => {
+    console.log(error);
+})
