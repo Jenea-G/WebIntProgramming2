@@ -1,4 +1,4 @@
-const student = {
+const student1 = {
   id: 1,
   name: "Kate",
   programm: "Web design",
@@ -16,3 +16,18 @@ function getStudentData(id) {
   });
   return promise;
 }
+
+function renderStudent(student) {
+  const container = document.getElementById("student-container");
+  const ul = document.createElement("ul");
+  const keys = Object.keys(student);
+
+  for (const key of keys) {
+    const li = document.createElement("li");
+    li.textContent = `${key.toUpperCase()} : ${student[key]}`;
+    ul.append(li);
+  }
+  container.append(ul);
+}
+
+renderStudent(student1);
