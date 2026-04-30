@@ -5,13 +5,14 @@ let student = {
 };
 
 console.log(student);
+let auth = true;
 
 function loadUserData() {
     let promise = new Promise((resolve, reject) => {
         if (auth === true) {
             resolve(student);
         } else {
-            reject("")
+            reject("Authentication failed")
         }
     })
     return promise;
@@ -53,6 +54,19 @@ Promise.resolve(5).then((result) => {
 
 // Let's try with our student.
 
-loadUserData().then((user) => {
-    console.log(user);
-});
+const output = document.getElementById('output');
+
+loadUserData()
+    .then((user) => {
+        console.log(`Username ${user.name}`);
+        return user.name;
+    }).then((name) => {
+        return name.toUpperCase();
+    })
+    .then((name) => {
+        output.textContent = `Hello, ${name} !`;
+    })
+    .catch((error) => {
+        output.textContent = error;
+    });
+
