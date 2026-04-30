@@ -19,6 +19,8 @@ function getStudentData(id) {
 
 function renderStudent(student) {
   const container = document.getElementById("student-container");
+  const title = document.createElement("h2");
+  title.textContent = "Student Data";
   const ul = document.createElement("ul");
   const keys = Object.keys(student);
 
@@ -27,7 +29,7 @@ function renderStudent(student) {
     li.textContent = `${key.toUpperCase()} : ${student[key]}`;
     ul.append(li);
   }
-  container.append(ul);
+  container.append(title, ul);
 }
 
 renderStudent(student1);

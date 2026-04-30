@@ -11,8 +11,14 @@ section {
 .controls {
     margin-top: 10px;
 }
+
 .data {
     padding: 20px;
     border: 2px solid rgb(1, 1, 77);
     margin-top: 30px;
+}
+
+section#student-container,
+section#courses-container {
+    padding: 20px 0;
 }
