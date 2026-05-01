@@ -6,10 +6,12 @@ const student1 = {
   bio: "personal info",
 };
 
-function getStudentData(id) {
-  const promise = new Promise(resolve, (reject) => {
-    if (id) {
-      resolve(student);
+function getStudentData() {
+  const promise = new Promise((resolve, reject) => {
+    if (student1) {
+      setTimeout(() => {
+        resolve(renderStudent(student1));
+      }, 2000);
     } else {
       reject("Student data not found");
     }
@@ -32,4 +34,22 @@ function renderStudent(student) {
   container.append(title, ul);
 }
 
-renderStudent(student1);
+// Load student data on button click;
+
+const sBtn = document.getElementById("load-student-btn");
+const pStatus = document.getElementById("status");
+
+sBtn.addEventListener("click", () => {
+  pStatus.textContent = "Loading student data...";
+
+  getStudentData()
+    .then((result) => {
+      result;
+    })
+    .then(() => {
+      pStatus.textContent = "Student data is loaded.";
+    })
+    .catch((error) => {
+      pStatus.textContent = error;
+    });
+});

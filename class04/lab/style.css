@@ -1,6 +1,6 @@
 .container {
     width: 90%;
-    max-width: 600px;
+    max-width: 700px;
     margin: 0 auto;
 }
 
@@ -14,11 +14,19 @@ section {
 
 .data {
     padding: 20px;
-    border: 2px solid rgb(1, 1, 77);
+    /* border: 2px solid rgb(1, 1, 77); */
+    background-color: aliceblue;
     margin-top: 30px;
 }
 
 section#student-container,
 section#courses-container {
-    padding: 20px 0;
+    padding: 10px;
+    width: 50%;
+    border: 1px solid gray;
+}
+
+.data {
+    display: flex;
+    gap: 20px;
 }
