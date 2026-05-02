@@ -19,8 +19,9 @@ function getStudentData() {
   return promise;
 }
 
+const sContainer = document.getElementById("student-container");
+
 function renderStudent(student) {
-  const container = document.getElementById("student-container");
   const title = document.createElement("h2");
   title.textContent = "Student Data";
   const ul = document.createElement("ul");
@@ -31,7 +32,7 @@ function renderStudent(student) {
     li.textContent = `${key.toUpperCase()} : ${student[key]}`;
     ul.append(li);
   }
-  container.append(title, ul);
+  sContainer.append(title, ul);
 }
 
 // Load student data on button click;
@@ -78,8 +79,9 @@ function getCoursesData() {
   return promise;
 }
 
+const cContainer = document.getElementById("courses-container");
+
 function renderCourses(courses) {
-  const container = document.getElementById("courses-container");
   const title = document.createElement("h2");
   title.textContent = "Courses Data";
   const ulWrap = document.createElement("ul");
@@ -101,7 +103,7 @@ function renderCourses(courses) {
     i++;
   }
 
-  container.append(title, ulWrap);
+  cContainer.append(title, ulWrap);
 }
 
 // renderCourses(courses);
@@ -123,4 +125,14 @@ cBtn.addEventListener("click", () => {
     .catch((error) => {
       pStatus.textContent = error;
     });
+});
+
+// Clear button
+
+const clearBtn = document.getElementById("clear-btn");
+
+clearBtn.addEventListener("click", () => {
+  pStatus.textContent = "Ready.";
+  sContainer.replaceChildren();
+  cContainer.replaceChildren();
 });
