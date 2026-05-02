@@ -8,7 +8,7 @@ const student1 = {
 
 function getStudentData() {
   const promise = new Promise((resolve, reject) => {
-    if (student1) {
+    if (student1 !== "") {
       setTimeout(() => {
         resolve(renderStudent(student1));
       }, 2000);
@@ -56,15 +56,16 @@ sBtn.addEventListener("click", () => {
 
 // =======================
 
+// const courses = "";
 const courses = [
   { code: "WIP2", title: "Web Interface Programming 2" },
   { code: "AWP", title: "Advanced Programming" },
   { code: "DB2", title: "Database Management Systems 2" },
 ];
 
-function getCourseData() {
+function getCoursesData() {
   const promise = new Promise((resolve, reject) => {
-    if (courses) {
+    if (courses !== "") {
       setTimeout(() => {
         resolve(renderCourses(courses));
       }, 2000);
@@ -103,4 +104,23 @@ function renderCourses(courses) {
   container.append(title, ulWrap);
 }
 
-renderCourses(courses);
+// renderCourses(courses);
+
+// Load courses data on button click;
+
+const cBtn = document.getElementById("load-courses-btn");
+
+cBtn.addEventListener("click", () => {
+  pStatus.textContent = "Loading courses data...";
+
+  getCoursesData()
+    .then((result) => {
+      result;
+    })
+    .then(() => {
+      pStatus.textContent = "Courses data is loaded.";
+    })
+    .catch((error) => {
+      pStatus.textContent = error;
+    });
+});
