@@ -1,3 +1,7 @@
+* {
+    color: rgb(56, 56, 56);
+}
+
 .container {
     width: 90%;
     max-width: 900px;
@@ -14,8 +18,7 @@ section {
 
 .data {
     padding: 20px;
-    /* border: 2px solid rgb(1, 1, 77); */
-    background-color: aliceblue;
+    background-color: rgba(139, 131, 131, 0.105);
     margin-top: 30px;
 }
 
@@ -23,10 +26,32 @@ section#student-container,
 section#courses-container {
     padding: 10px;
     width: 50%;
-    border: 1px solid gray;
+    border: 1px solid rgb(40, 72, 147);
 }
 
 .data {
     display: flex;
     gap: 20px;
+}
+
+button {
+    padding: 5px 15px;
+    margin-right: 10px;
+    color: white;
+    background-color: rgb(34, 63, 131);
+    border: none;
+    transition: 0.3s;
+}
+
+button#clear-btn {
+    background-color: rgb(139, 131, 131);
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+#status {
+    color: rgb(40, 72, 147);
+    text-decoration: underline;
 }

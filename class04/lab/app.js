@@ -13,7 +13,9 @@ function getStudentData() {
         resolve(renderStudent(student1));
       }, 2000);
     } else {
-      reject("Student data not found");
+      setTimeout(() => {
+        reject("Student data not found");
+      }, 2000);
     }
   });
   return promise;
@@ -105,8 +107,6 @@ function renderCourses(courses) {
 
   cContainer.append(title, ulWrap);
 }
-
-// renderCourses(courses);
 
 // Load courses data on button click;
 
