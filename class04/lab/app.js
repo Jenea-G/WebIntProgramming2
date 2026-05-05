@@ -60,11 +60,11 @@ function main() {
   });
 }
 
-function getStudentData(student1) {
+function getStudentData(student) {
   const promise = new Promise((resolve, reject) => {
-    if (student1 !== "") {
+    if (student !== "") {
       setTimeout(() => {
-        resolve(renderStudent(student1));
+        resolve(renderStudent(student));
       }, 2000);
     } else {
       setTimeout(() => {
