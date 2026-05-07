@@ -183,12 +183,14 @@ const book = {
   name: "Petit Prince",
   author: "Antoine de Saint-Exupery",
   read() {
+    // we can store a function inside of an object
     console.log("read");
   },
   price: undefined,
 };
 
 console.log(book);
+book.read(); // will show the result in line 186
 
 // JSON completely ignores the method!
 // it also ignores the undefined value!
