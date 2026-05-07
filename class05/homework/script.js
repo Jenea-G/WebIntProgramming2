@@ -8,7 +8,9 @@ loadPostBtn.addEventListener("click", () => {
   status.textContent = "Loading post...";
   output.innerHTML = "";
 
-  fetch("https://jsonplaceholder.typicode.com/posts/11")
+  const randomInt = Math.floor(Math.random() * 100) + 1;
+
+  fetch(`https://jsonplaceholder.typicode.com/posts/${randomInt}`)
     .then((response) => {
       console.log(response); // to check what i am getting
 
@@ -23,12 +25,15 @@ loadPostBtn.addEventListener("click", () => {
         console.log(json);
 
         const h2 = document.createElement("h2");
+        const h3 = document.createElement("h3");
         const p = document.createElement("p");
-        h2.textContent = json.id + ". " + json.title;
+        h2.textContent = json.title;
+        h3.textContent = "Post #" + json.id;
+        h3.classList = "text-lowercase";
         h2.classList.add("text-capitalize", "text-info-emphasis");
         p.textContent = json.body;
 
-        output.append(h2, p);
+        output.append(h3, h2, p);
 
         status.textContent = "The post has been loaded successfully.";
       }, 2000);
