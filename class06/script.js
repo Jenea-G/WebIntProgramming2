@@ -83,4 +83,118 @@ console.log(jsonText);
 //                          COMMENTS
 //                          UNDEFINED
 
-// now let's do some PARSE
+// JSON parse()
+
+const studentJSON = '{"name":"Alice","program":"Web Dev","semester":4}';
+
+const parsedStudent = JSON.parse(studentJSON);
+console.log(parsedStudent);
+console.log(typeof studentJSON);
+console.log(typeof parsedStudent);
+
+// Let's try an array
+
+const arrayJSON = '["HTML", "CSS", "JavaScript"]';
+const topics = JSON.parse(arrayJSON);
+
+console.log(topics);
+
+// parsed json can become arrays too
+
+/**
+ * Nested Object example
+ */
+
+const nestedJSON = `
+{
+    "name":"Alison",
+    "address":{
+        "city":"Montreal",
+        "postalCode":"H1A 1A1"
+    }
+}
+`;
+
+console.log("=============================");
+const parsedUser = JSON.parse(nestedJSON);
+console.log(parsedUser);
+console.log(parsedUser.address.city);
+
+// const badJSON = "{name: 'Alice'}";
+// this would throw a syntax error, because
+// 1. single quote outside, double quote inside
+// 2. key needs to be within quotation marks.
+// 3. no spaces
+
+// JSON.parse(badJSON);
+
+/**
+ * JSON.stingigy()
+ * converts a JS value into JSON text.
+ * This is serialization in the other direction.
+ *
+ * This would be useful when we want to convert our JS object
+ * and send it somewhere else as a JSON text.
+ */
+
+// JS Object
+const product = {
+  name: "Keyboard",
+  category: "Accessories",
+  price: 20.99,
+};
+
+const objToJson = JSON.stringify(product);
+console.log("JS Object: ");
+console.log(product);
+console.log(typeof product);
+
+console.log("JSON text");
+console.log(objToJson);
+console.log(typeof objToJson);
+
+// input: JS object
+// output: string
+
+console.log("========================");
+
+const colors = ["red", "blue", "yellow"];
+const colorsJSON = JSON.stringify(colors);
+console.log(colors);
+console.log(colorsJSON);
+
+/**
+ * Pretty print JSON
+ * making JSON look nice with indentation, white space
+ * line breaks, etc. to make it easily readable
+ */
+
+const prettyJSON = JSON.stringify(product, null, 2);
+console.log(prettyJSON);
+
+// purely cosmetics
+// useful for readability and debugging
+
+/**
+ * Important: limitations
+ */
+
+const book = {
+  name: "Petit Prince",
+  author: "Antoine de Saint-Exupery",
+  read() {
+    console.log("read");
+  },
+  price: undefined,
+};
+
+console.log(book);
+
+// JSON completely ignores the method!
+// it also ignores the undefined value!
+const bookJSON = JSON.stringify(book, null, 2);
+console.log(bookJSON);
+
+// Reminder:
+// functions are not included in JSON
+// JSON is for data, not behaviour!
