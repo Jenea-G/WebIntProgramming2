@@ -19,5 +19,6 @@ console.log("Type of JSON text: " + typeof courseJson);
 
 console.log("===== Ex3 ===== ");
 
+// const courseJsonPretty = JSON.stringify(course, ["title"], 2); // will send only the title in the parsed text
 const courseJsonPretty = JSON.stringify(course, null, 2);
 console.log("JSON text with indentation: " + courseJsonPretty);
