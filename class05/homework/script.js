@@ -25,7 +25,7 @@ loadPostBtn.addEventListener("click", () => {
         const h2 = document.createElement("h2");
         const p = document.createElement("p");
         h2.textContent = json.id + ". " + json.title;
-        h2.classList.add("text-capitalize", "text-success-subtle");
+        h2.classList.add("text-capitalize", "text-info-emphasis");
         p.textContent = json.body;
 
         output.append(h2, p);
