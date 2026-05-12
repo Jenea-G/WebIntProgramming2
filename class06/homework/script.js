@@ -11,7 +11,7 @@ btn.addEventListener("click", () => {
 
   contentDiv.innerHTML = "";
 
-  const fetchRequest = fetch("https://jsonplaceholder.typicode.com/users/1");
+  const fetchRequest = fetch("https://jsonplaceholder.typicode.com/users/6");
   fetchRequest
     .then((response) => {
       if (response.ok === false) {
@@ -22,7 +22,8 @@ btn.addEventListener("click", () => {
     .then((user) => {
       setTimeout(() => {
         statusMsg.textContent = "User information loaded successfully.";
-        statusMsg.classList += " text-success";
+        statusMsg.classList.remove("alert-secondary");
+        statusMsg.classList += " alert-success";
         console.log(user);
 
         const card = document.createElement("div");
@@ -46,8 +47,8 @@ btn.addEventListener("click", () => {
     })
     .catch((error) => {
       setTimeout(() => {
-        statusMsg.classList.remove("text-success");
-        statusMsg.classList += " text-danger";
+        statusMsg.classList.remove("alert-success");
+        statusMsg.classList += " alert-danger";
         statusMsg.textContent = "Failed to load user.";
         console.log(error);
       }, 2000);
@@ -56,6 +57,6 @@ btn.addEventListener("click", () => {
 
 btnClear.addEventListener("click", () => {
   statusMsg.textContent = "Ready.";
-  statusMsg.classList.remove("text-success", "text-danger");
+  statusMsg.classList.remove("alert-success", "alert-danger");
   contentDiv.innerHTML = "";
 });
