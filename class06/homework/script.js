@@ -6,9 +6,12 @@ btn.addEventListener("click", () => {
   statusMsg.textContent = "User information is loading...";
   contentDiv.innerHTML = "";
 
-  const fetchRequest = fetch("https://jsonplaceholder.typicode.com/users/1");
+  const fetchRequest = fetch("https://jsonplaceholder.typicode.com/users/1001");
   fetchRequest
     .then((response) => {
+      if (response.ok === false) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
       return response.json();
     })
     .then((user) => {
@@ -34,6 +37,14 @@ btn.addEventListener("click", () => {
         card.append(divBody);
         text.append(ul);
         divBody.append(title, text);
+      }, 2000);
+    })
+    .catch((error) => {
+      setTimeout(() => {
+        statusMsg.classList.remove("text-success");
+        statusMsg.classList += " text-danger";
+        statusMsg.textContent = "Failed to load user.";
+        console.log(error);
       }, 2000);
     });
 });
