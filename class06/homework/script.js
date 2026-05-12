@@ -4,7 +4,11 @@ const statusMsg = document.getElementById("status-msg");
 const contentDiv = document.getElementById("content-div");
 
 btn.addEventListener("click", () => {
-  statusMsg.textContent = "User information is loading...";
+  statusMsg.textContent = "";
+  const spinnerDiv = document.createElement("div");
+  spinnerDiv.classList = "spinner-border text-secondary";
+  statusMsg.append(spinnerDiv);
+
   contentDiv.innerHTML = "";
 
   const fetchRequest = fetch("https://jsonplaceholder.typicode.com/users/1");
@@ -32,7 +36,7 @@ btn.addEventListener("click", () => {
         const ul = document.createElement("ul");
 
         title.textContent = user.name;
-        ul.innerHTML = `<li>Username: ${user.username}</li><li>Email: ${user.email}</li><li>Phone number: ${user.phone}</li><li>Website: ${user.website}</li><li>City: ${user.address.city}</li>`;
+        ul.innerHTML = `<li>Username: ${user.username}</li><li>Email: ${user.email}</li><li>Phone number: ${user.phone}</li><li>Website: ${user.website}</li><li>Company: ${user.company}</li><li>City: ${user.address.city}</li>`;
 
         contentDiv.append(card);
         card.append(divBody);
