@@ -27,7 +27,7 @@ btn.addEventListener("click", () => {
         console.log(user);
 
         const card = document.createElement("div");
-        card.classList = "card";
+        card.classList = "card bg-secondary-subtle";
         const divBody = document.createElement("div");
         divBody.classList = "card-body";
         const title = document.createElement("h5");
@@ -58,5 +58,6 @@ btn.addEventListener("click", () => {
 btnClear.addEventListener("click", () => {
   statusMsg.textContent = "Ready.";
   statusMsg.classList.remove("alert-success", "alert-danger");
+  statusMsg.classList += " alert-secondary";
   contentDiv.innerHTML = "";
 });
