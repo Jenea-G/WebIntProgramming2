@@ -1,4 +1,5 @@
 const btn = document.getElementById("load-btn");
+const btnClear = document.getElementById("clear-btn");
 const statusMsg = document.getElementById("status-msg");
 const contentDiv = document.getElementById("content-div");
 
@@ -6,7 +7,7 @@ btn.addEventListener("click", () => {
   statusMsg.textContent = "User information is loading...";
   contentDiv.innerHTML = "";
 
-  const fetchRequest = fetch("https://jsonplaceholder.typicode.com/users/1001");
+  const fetchRequest = fetch("https://jsonplaceholder.typicode.com/users/1");
   fetchRequest
     .then((response) => {
       if (response.ok === false) {
@@ -47,4 +48,10 @@ btn.addEventListener("click", () => {
         console.log(error);
       }, 2000);
     });
+});
+
+btnClear.addEventListener("click", () => {
+  statusMsg.textContent = "Ready.";
+  statusMsg.classList.remove("text-success", "text-danger");
+  contentDiv.innerHTML = "";
 });
