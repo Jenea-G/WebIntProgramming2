@@ -44,9 +44,17 @@ button:hover {
     scale: 1.01;
 }
 
+.placeholder {
+    width: 500px;
+    /* border: 1px solid rgb(72, 0, 109);
+    padding: 30px; */
+    margin: 20px 0;
+}
+
 h3 {
     text-transform: capitalize;
     text-decoration: underline;
+    margin-bottom: 15px;
 }
 
 .header {
