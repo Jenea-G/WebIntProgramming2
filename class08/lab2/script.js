@@ -25,7 +25,7 @@ loadBtn.addEventListener("click", () => {
 });
 
 function loadUsers(n, container) {
-  for (let i = 1; i <= n; i++) {
+  for (let i = 0; i <= n; i++) {
     fetch(`https://jsonplaceholder.typicode.com/users/${i}`)
       .then((response) => {
         if (!response.ok) {
@@ -36,7 +36,6 @@ function loadUsers(n, container) {
       .then((user) => {
         console.log(user);
         renderUserCard(user, container);
-        loadPostsForUser(user);
         setStatus(statusMsg, "success");
       })
       .catch((error) => {
@@ -59,21 +58,38 @@ function renderUserCard(user, container) {
   text.classList = "card-text";
   const postsBtn = document.createElement("a");
   postsBtn.classList = "btn btn-secondary";
+  const postsBody = document.createElement("div");
+  postsBody.classList = "card-body";
+  const postsContainer = document.createElement("ul");
+  postsContainer.classList = "list-group list-group-flush";
+  const postStatus = document.createElement("p");
+  postStatus.classList = "alert";
+
+  postsBody.append(postStatus, postsContainer);
   body.append(title, text, postsBtn);
-  card.append(body);
+  card.append(body, postsBody);
   cardContainer.append(card);
   container.append(cardContainer);
 
   postsBtn.textContent = "Load Posts";
+  postsBtn.id = `postsBtn-${user.id}`;
   title.textContent = user.name;
   text.innerHTML = `Email: ${user.email} <br>
                 Phone: ${user.phone} <br>
                 City: ${user.address.city} <br>
                 Company name: ${user.company.name} <br>
                 `;
+
+  postsBtn.addEventListener(
+    "click",
+    () => {
+      loadPostsForUser(user, postsContainer, postStatus);
+    },
+    { once: true },
+  );
 }
 
-function loadPostsForUser(user) {
+function loadPostsForUser(user, postsContainer, postStatus) {
   fetch(`https://jsonplaceholder.typicode.com/posts`)
     .then((response) => {
       if (!response.ok) {
@@ -82,36 +98,36 @@ function loadPostsForUser(user) {
       return response.json();
     })
     .then((posts) => {
-      setStatus(statusMsg, "success");
+      console.log(posts);
+      setStatus(postStatus, "success");
+      renderPosts(posts, postsContainer, user);
     })
     .catch((error) => {
       console.log(error);
-      setStatus(statusMsg, "error");
+      setStatus(postStatus, "error");
     });
 }
 
-function getUserPosts(posts) {
+function renderPosts(posts, postsContainer, user) {
   let userPosts = [];
   for (const post of posts) {
     if (post.userId === user.id) userPosts.push(post);
   }
-  return userPosts;
-}
+  console.log(userPosts);
 
-function renderPosts(posts, postsContainer) {
-  const userPosts = getUserPosts(posts);
-  for (i = 1; i >= 3; i++) {
+  for (let i = 0; i < 3; i++) {
     const thePost = userPosts[i];
 
     const li = document.createElement("li");
     li.classList.add("list-group-item");
     const title = document.createElement("h6");
+    title.classList.add("text-primary", "text-capitalize");
     const p = document.createElement("p");
 
-    postsContainer.append(li);
     li.append(title, p);
     title.textContent = thePost.title;
     p.textContent = thePost.body;
+    postsContainer.append(li);
   }
 }
 // setStatus(message, type)
