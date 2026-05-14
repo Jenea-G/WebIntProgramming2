@@ -5,28 +5,27 @@ const cardsHolder = document.getElementById("cards-holder");
 const statusMsg = document.getElementById("status-msg");
 
 function setStatus(element, status) {
+  element.classList.remove("alert-success", "alert-secondary", "alert-danger");
   if (status === "success") {
     element.textContent = "Data is loaded successfully!";
-    element.classList += " alert-success";
-    // element.classList.remove("alert-danger", "alert-secondary");
+    element.classList.add("alert-success");
   } else if (status === "loading") {
     element.textContent = "Data is loading ...";
-    element.classList += " alert-secondary";
-    // element.classList.remove("alert-danger", "alert-success");
+    element.classList.add("alert-secondary");
   } else {
     element.textContent = "Data loading failed.";
-    element.classList += " alert-danger";
-    // element.classList.remove("alert-success", "alert-secondary");
+    element.classList.add("alert-danger");
   }
 }
 
 loadBtn.addEventListener("click", () => {
   setStatus(statusMsg, "loading");
-  loadUsers(5);
+  cardsHolder.innerHTML = "";
+  loadUsers(5, cardsHolder);
 });
 
-function loadUsers(n) {
-  for (let i = 100; i <= 105; i++) {
+function loadUsers(n, container) {
+  for (let i = 1; i <= n; i++) {
     fetch(`https://jsonplaceholder.typicode.com/users/${i}`)
       .then((response) => {
         if (!response.ok) {
@@ -36,9 +35,43 @@ function loadUsers(n) {
       })
       .then((user) => {
         console.log(user);
+        renderUserCard(user, container);
+        setStatus(statusMsg, "success");
       })
       .catch((error) => {
+        console.log(error);
         setStatus(statusMsg, "error");
       });
   }
 }
+
+function renderUserCard(user, container) {
+  const cardContainer = document.createElement("div");
+  cardContainer.classList = "col col-md-6 m-0 p-2";
+  const card = document.createElement("div");
+  card.classList = "card";
+  const body = document.createElement("div");
+  body.classList = "card-body";
+  const title = document.createElement("h5");
+  title.classList = "card-title";
+  const text = document.createElement("p");
+  text.classList = "card-text";
+  body.append(title, text);
+  card.append(body);
+  cardContainer.append(card);
+  container.append(cardContainer);
+
+  title.textContent = user.name;
+  text.innerHTML = `Email: ${user.email} <br>
+                Phone: ${user.phone} <br>
+                City: ${user.address.city} <br>
+                Company name: ${user.company.name} <br>
+                `;
+}
+
+// setStatus(message, type)
+// clearDashboard()
+// loadUsers()
+// renderUserCard(user)
+// loadPostsForUser(user, postsContainer)
+// renderPosts(posts, container)
