@@ -36,6 +36,7 @@ function loadUsers(n, container) {
       .then((user) => {
         console.log(user);
         renderUserCard(user, container);
+        loadPostsForUser(user);
         setStatus(statusMsg, "success");
       })
       .catch((error) => {
@@ -70,6 +71,27 @@ function renderUserCard(user, container) {
                 City: ${user.address.city} <br>
                 Company name: ${user.company.name} <br>
                 `;
+}
+
+function loadPostsForUser(user) {
+  fetch(`https://jsonplaceholder.typicode.com/posts`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((posts) => {
+      for (const post of posts) {
+        if (post.userId === user.id) console.log(post);
+      }
+
+      setStatus(statusMsg, "success");
+    })
+    .catch((error) => {
+      console.log(error);
+      setStatus(statusMsg, "error");
+    });
 }
 
 // setStatus(message, type)
