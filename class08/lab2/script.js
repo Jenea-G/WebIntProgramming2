@@ -22,4 +22,23 @@ function setStatus(element, status) {
 
 loadBtn.addEventListener("click", () => {
   setStatus(statusMsg, "loading");
+  loadUsers(5);
 });
+
+function loadUsers(n) {
+  for (let i = 100; i <= 105; i++) {
+    fetch(`https://jsonplaceholder.typicode.com/users/${i}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((user) => {
+        console.log(user);
+      })
+      .catch((error) => {
+        setStatus(statusMsg, "error");
+      });
+  }
+}
