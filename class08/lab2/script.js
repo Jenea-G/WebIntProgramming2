@@ -82,10 +82,6 @@ function loadPostsForUser(user) {
       return response.json();
     })
     .then((posts) => {
-      for (const post of posts) {
-        if (post.userId === user.id) console.log(post);
-      }
-
       setStatus(statusMsg, "success");
     })
     .catch((error) => {
@@ -94,6 +90,30 @@ function loadPostsForUser(user) {
     });
 }
 
+function getUserPosts(posts) {
+  let userPosts = [];
+  for (const post of posts) {
+    if (post.userId === user.id) userPosts.push(post);
+  }
+  return userPosts;
+}
+
+function renderPosts(posts, postsContainer) {
+  const userPosts = getUserPosts(posts);
+  for (i = 1; i >= 3; i++) {
+    const thePost = userPosts[i];
+
+    const li = document.createElement("li");
+    li.classList.add("list-group-item");
+    const title = document.createElement("h6");
+    const p = document.createElement("p");
+
+    postsContainer.append(li);
+    li.append(title, p);
+    title.textContent = thePost.title;
+    p.textContent = thePost.body;
+  }
+}
 // setStatus(message, type)
 // clearDashboard()
 // loadUsers()
