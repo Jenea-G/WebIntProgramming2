@@ -12,9 +12,12 @@ function setStatus(element, status) {
   } else if (status === "loading") {
     element.textContent = "Data is loading ...";
     element.classList.add("alert-secondary");
-  } else {
+  } else if (status === "error") {
     element.textContent = "Data loading failed.";
     element.classList.add("alert-danger");
+  } else {
+    element.textContent = "Ready to load data.";
+    element.classList.add("alert-secondary");
   }
 }
 
@@ -22,6 +25,11 @@ loadBtn.addEventListener("click", () => {
   setStatus(statusMsg, "loading");
   cardsHolder.innerHTML = "";
   loadUsers(5, cardsHolder);
+});
+
+clearBtn.addEventListener("click", () => {
+  setStatus(statusMsg, "");
+  cardsHolder.innerHTML = "";
 });
 
 function loadUsers(n, container) {
