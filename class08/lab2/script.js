@@ -56,11 +56,14 @@ function renderUserCard(user, container) {
   title.classList = "card-title";
   const text = document.createElement("p");
   text.classList = "card-text";
-  body.append(title, text);
+  const postsBtn = document.createElement("a");
+  postsBtn.classList = "btn btn-secondary";
+  body.append(title, text, postsBtn);
   card.append(body);
   cardContainer.append(card);
   container.append(cardContainer);
 
+  postsBtn.textContent = "Load Posts";
   title.textContent = user.name;
   text.innerHTML = `Email: ${user.email} <br>
                 Phone: ${user.phone} <br>
