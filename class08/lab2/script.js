@@ -1,8 +1,20 @@
-// connect DOM
-const loadBtn = document.getElementById("load-users");
-const clearBtn = document.getElementById("clear-data");
-const cardsHolder = document.getElementById("cards-holder");
-const statusMsg = document.getElementById("status-msg");
+function main() {
+  const loadBtn = document.getElementById("load-users");
+  const clearBtn = document.getElementById("clear-data");
+  const cardsHolder = document.getElementById("cards-holder");
+  const statusMsg = document.getElementById("status-msg");
+
+  loadBtn.addEventListener("click", () => {
+    setStatus(statusMsg, "loading");
+    cardsHolder.innerHTML = "";
+    loadUsers(5, cardsHolder, statusMsg);
+  });
+
+  clearBtn.addEventListener("click", () => {
+    setStatus(statusMsg, "");
+    cardsHolder.innerHTML = "";
+  });
+}
 
 function setStatus(element, status) {
   element.classList.remove("alert-success", "alert-secondary", "alert-danger");
@@ -21,18 +33,7 @@ function setStatus(element, status) {
   }
 }
 
-loadBtn.addEventListener("click", () => {
-  setStatus(statusMsg, "loading");
-  cardsHolder.innerHTML = "";
-  loadUsers(5, cardsHolder);
-});
-
-clearBtn.addEventListener("click", () => {
-  setStatus(statusMsg, "");
-  cardsHolder.innerHTML = "";
-});
-
-function loadUsers(n, container) {
+function loadUsers(n, container, status) {
   for (let i = 0; i <= n; i++) {
     fetch(`https://jsonplaceholder.typicode.com/users/${i}`)
       .then((response) => {
@@ -44,11 +45,11 @@ function loadUsers(n, container) {
       .then((user) => {
         console.log(user);
         renderUserCard(user, container);
-        setStatus(statusMsg, "success");
+        setStatus(status, "success");
       })
       .catch((error) => {
         console.log(error);
-        setStatus(statusMsg, "error");
+        setStatus(status, "error");
       });
   }
 }
@@ -100,11 +101,12 @@ function renderUserCard(user, container) {
       body.append(postsVisibilityBtn);
 
       postsVisibilityBtn.addEventListener("click", () => {
-        if (postsContainer.classList.contains("invisible")) {
-          postsContainer.classList.remove("invisible");
+        postStatus.remove();
+        if (postsContainer.classList.contains("d-none")) {
+          postsContainer.classList.remove("d-none");
           postsVisibilityBtn.textContent = "Hide Posts";
         } else {
-          postsContainer.classList.add("invisible");
+          postsContainer.classList.add("d-none");
           postsVisibilityBtn.textContent = "Show Posts";
         }
       });
@@ -154,9 +156,5 @@ function renderPosts(posts, postsContainer, user) {
     postsContainer.append(li);
   }
 }
-// setStatus(message, type)
-// clearDashboard()
-// loadUsers()
-// renderUserCard(user)
-// loadPostsForUser(user, postsContainer)
-// renderPosts(posts, container)
+
+main();
