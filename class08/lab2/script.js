@@ -65,7 +65,7 @@ function renderUserCard(user, container) {
   const text = document.createElement("p");
   text.classList = "card-text";
   const postsBtn = document.createElement("a");
-  postsBtn.classList = "btn btn-secondary";
+  postsBtn.classList = "btn btn-secondary me-2";
   const postsBody = document.createElement("div");
   postsBody.classList = "card-body";
   const postsContainer = document.createElement("ul");
@@ -92,6 +92,22 @@ function renderUserCard(user, container) {
     "click",
     () => {
       loadPostsForUser(user, postsContainer, postStatus);
+
+      const postsVisibilityBtn = document.createElement("a");
+      postsVisibilityBtn.classList = "btn btn-outline-dark";
+      postsVisibilityBtn.textContent = "Hide Posts";
+
+      body.append(postsVisibilityBtn);
+
+      postsVisibilityBtn.addEventListener("click", () => {
+        if (postsContainer.classList.contains("invisible")) {
+          postsContainer.classList.remove("invisible");
+          postsVisibilityBtn.textContent = "Hide Posts";
+        } else {
+          postsContainer.classList.add("invisible");
+          postsVisibilityBtn.textContent = "Show Posts";
+        }
+      });
     },
     { once: true },
   );
