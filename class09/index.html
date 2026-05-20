@@ -14,6 +14,44 @@
     <button id="clear-btn">Clear</button>
     <div id="users-container"></div>
 
+    <div class="reflection">
+        <!-- Students should answer these briefly:
+
+        What is the purpose of type="module" in HTML?
+        Why is it useful to separate fetchUsers() into api.js?
+        Why is it useful to separate rendering into ui.js?
+        What would happen if everything stayed in one file as the project grows?
+        What is the difference between exporting and importing? -->
+
+        <hr>
+        <h3>Reflection</h3>
+        <ol>
+            <li>
+                <h4>What is the purpose of type="module" in HTML?</h4>
+                <p>The purpose is to enable importing and exporting parts of the code from different js files.</p>
+            </li>
+            <li>
+                <h4>Why is it useful to separate fetchUsers() into api.js?</h4>
+                <p>It is useful as we can easily see where to find fetch info to fix in case of errors or any changes.
+                </p>
+            </li>
+            <li>
+                <h4>Why is it useful to separate rendering into ui.js?</h4>
+                <p>Separating code by purpose helps to navigate through code and makes it easier to locate and edit/fix.
+                </p>
+            </li>
+            <li>
+                <h4>What would happen if everything stayed in one file as the project grows?</h4>
+                <p>It will become difficult to read and maintain.</p>
+            </li>
+            <li>
+                <h4>What is the difference between exporting and importing?</h4>
+                <p>Exporting makes the code visible to other files and makes it possible to import the code to another
+                    file in order to use it.</p>
+            </li>
+        </ol>
+    </div>
+
     <script type="module" src="app.js"></script>
 </body>
 
