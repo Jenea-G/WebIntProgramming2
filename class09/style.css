@@ -2,6 +2,16 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+section {
+    padding: 50px 0;
+}
+
 .grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -13,8 +23,4 @@
     border: 1px solid black;
     padding: 20px;
     border-radius: 20px;
-}
-
-hr {
-    margin-top: 30px;
 }
