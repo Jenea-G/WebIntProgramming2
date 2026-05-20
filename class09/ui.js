@@ -23,3 +23,24 @@ export function createUserCard(user) {
   return article;
   // return a DOM element
 }
+
+export function renderPosts(posts, container) {
+  //   container.innerHTML = "";
+  container.classList.add("grid");
+
+  posts.slice(0, 5).forEach((post) => {
+    const article = createPostCard(post);
+    container.appendChild(article);
+  });
+}
+
+export function createPostCard(post) {
+  const article = document.createElement("article");
+  article.classList.add("card");
+  article.innerHTML = `
+      <h2>${post.title}</h2>
+      <p> ${post.body}</p>
+    `;
+  return article;
+  // return a DOM element
+}
