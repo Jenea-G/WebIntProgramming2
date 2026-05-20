@@ -11,3 +11,7 @@ export function renderUsers(users, container) {
     container.appendChild(article);
   });
 }
+
+export function clearUsers(container) {
+  container.innerHTML = "";
+}
