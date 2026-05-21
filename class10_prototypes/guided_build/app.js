@@ -54,3 +54,20 @@ runDemoBtn.addEventListener("click", () => {
 console.log(Object.getPrototypeOf(book1) === Book.prototype);
 console.log(book1.hasOwnProperty("title"));
 console.log(book1.hasOwnProperty("displayInfo"));
+
+Book.prototype.toggleAvailability = function () {
+  this.available = !this.available;
+  return `${this.title} availability is now ${this.available}`;
+};
+
+book1.toggleAvailability();
+book2.toggleAvailability();
+
+console.log("prouf that the methods are shared by the objects:");
+console.log(book1.displayInfo === book2.displayInfo);
+console.log(book1.toggleAvailability === book2.toggleAvailability);
+
+// Prototype property!!
+Book.prototype.category = "General";
+console.log(book1.category);
+console.log(book2.category);
