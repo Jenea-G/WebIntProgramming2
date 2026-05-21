@@ -11,6 +11,40 @@
     <button id="run-demo-btn">Run Demo</button>
     <div id="output"></div>
 
+    <section>
+        <div>
+            <h2>Part 6 - Reflection Questions</h2>
+            <ol>
+                <li>
+                    <h3>What problem do prototypes solve?</h3>
+                    <p>They solve the probleme of redundancy in the code</p>
+                </li>
+                <li>
+                    <h3>What is the difference between an own property and a prototype method?</h3>
+                    <p>The own property belogns on the object and will be individual for each object, while a prototype
+                        method is shared by all objects</p>
+                </li>
+                <li>
+                    <h3>Where does JavaScript look if a method is not found directly on an object?</h3>
+                    <p>It looks into prototype</p>
+                </li>
+                <li>
+                    <h3>Why is book1.displayInfo === book2.displayInfo useful evidence?</h3>
+                    <p>It demonstrates that the prototype method is identical for each object and thus shared.</p>
+                </li>
+                <li>
+                    <h3>What happened when you changed book1.category?</h3>
+                    <p>The shadow property was created for book1, thus it's category is no longer a shared property and
+                        is disconnected from prototype property</p>
+                </li>
+                <li>
+                    <h3>Why is it better to put shared behavior on the prototype instead of inside every object?</h3>
+                    <p>Because it will create copy methods for each instance rather than share the same method</p>
+                </li>
+            </ol>
+        </div>
+    </section>
+
     <script src="app.js"></script>
 </body>
 

@@ -71,3 +71,56 @@ console.log(book1.toggleAvailability === book2.toggleAvailability);
 Book.prototype.category = "General";
 console.log(book1.category);
 console.log(book2.category);
+
+// Override the shared property on one object
+book1.category = "Programming";
+console.log(book1.category); // a shared prototype property
+console.log(book2.category); // an own property added directly to one object
+
+// Challenge 1
+console.log("==== challenge 1 ====");
+function Author(name, country) {
+  this.name = name;
+  this.country = country;
+}
+
+Author.prototype.describe = function () {
+  return `${this.name} is from ${this.country}`;
+};
+
+const a1 = new Author("Ray Bradbury", "USA");
+const a2 = new Author("Leo Tolstoy", "Russia");
+console.log(a1.describe());
+console.log(a2.describe());
+
+// Challenge 2
+console.log("==== challenge 2 ====");
+class BookClass {
+  constructor(title, author, available = true) {
+    this.title = title;
+    this.author = author;
+    this.available = available;
+  }
+
+  displayInfo() {
+    let availability = "";
+    if (this.available) {
+      availability = "is available";
+    } else {
+      availability = "is not available";
+    }
+    return `"${this.title}" by ${this.author} ${availability}.`;
+  }
+}
+
+const b1 = new BookClass("Farenheit 451", "Ray Bradbury", true);
+const b2 = new BookClass("War and Peace", "Leo Tolstoy", false);
+console.log(b1.displayInfo());
+console.log(b2.displayInfo());
+
+// Challenge 3
+console.log("==== challenge 3 ====");
+console.log(book1.hasOwnProperty("title")); // is an own property of book1
+console.log(book1.hasOwnProperty("category")); // is a shadowed property belonging to book1 object
+console.log(book2.hasOwnProperty("category")); // is a shared prototype property
+console.log(book1.hasOwnProperty("displayInfo")); // is a shared prototype property
