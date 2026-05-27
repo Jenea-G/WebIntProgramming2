@@ -36,3 +36,22 @@ Car.prototype.stop = function () {
 Car.prototype.showModel = function () {
   return `Model: ${this.model}`;
 };
+
+// Display results in the page
+const runDemoBtn = document.getElementById("run-demo-btn");
+const output = document.getElementById("output");
+
+runDemoBtn.addEventListener("click", () => {
+  const car1 = new Car("Toyota", "Corolla");
+  const car2 = new Car("Honda", "Civic", true);
+
+  output.innerHTML = `
+    <p>${car1.describe()}</p>
+    <p>${car1.showModel()}</p>
+    <p>${car1.start()}</p>
+    <hr>
+    <p>${car2.describe()}</p>
+    <p>${car2.showModel()}</p>
+    <p>${car2.stop()}</p>
+  `;
+});
