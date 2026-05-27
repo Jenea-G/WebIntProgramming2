@@ -18,6 +18,35 @@
             <div id="output"></div>
 
         </section>
+        <section>
+            <h2>Reflection Questions</h2>
+            <ol>
+                <li>What is inheritance?
+                    <p>When we pass functionality from parent class to its child class</p>
+                </li>
+                <li>Why do we use Animal.call(this, name) or Vehicle.call(this, brand) in child constructors?
+                    <p>We do that to link parent constructor to child and thus child gets its parents properties</p>
+                </li>
+                <li>Why do we use Object.create(...)?
+                    <p>It allows us to use methods from parent.prototype</p>
+                </li>
+                <li>Why do we reset the constructor property?
+                    <p>
+                        ??
+                        <!-- Because after using Object.create(), the constructor incorrectly points to the parent. Resetting
+                        it makes it point back to the child constructor. -->
+                    </p>
+                </li>
+                <li>What is the difference between inherited methods and child-specific methods?
+                    <p>Inherited methods are defind in a parent and will be shared by all children, while child-specific
+                        methods are unavailable for other children of the same parent</p>
+                </li>
+                <li>How does class ... extends ... relate to prototypes?
+                    <p>It allows to create a parent-child link between two classes and thus transfer the parent methods
+                        to the child.</p>
+                </li>
+            </ol>
+        </section>
     </main>
 
 </body>
