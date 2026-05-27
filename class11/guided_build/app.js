@@ -66,7 +66,7 @@ function ElectricCar(brand, model, batteryLevel) {
 
 // Inheritance setup
 ElectricCar.prototype = Object.create(Vehicle.prototype);
-ElectricCar.prototype = Object.create(Car.prototype);
+ElectricCar.prototype = Object.create(Car.prototype); // this statement overrides the previous one
 ElectricCar.prototype.constructor = ElectricCar; // ===== what does this line do ? ========= ???
 
 ElectricCar.prototype.charge = function () {
@@ -75,3 +75,7 @@ ElectricCar.prototype.charge = function () {
 };
 
 const car3 = new ElectricCar("Ford", "Mustang Mach-E", 20);
+
+console.log(Object.getPrototypeOf(Car.prototype) === Vehicle.prototype); // True
+console.log(Object.getPrototypeOf(ElectricCar.prototype) === Car.prototype); // True
+console.log(Object.getPrototypeOf(ElectricCar.prototype) === Vehicle.prototype); // False

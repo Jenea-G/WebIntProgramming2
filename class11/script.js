@@ -97,3 +97,6 @@ runDemoBtn.addEventListener("click", () => {
     <p>${cat1.meow()}</p>
   `;
 });
+
+console.log(Object.getPrototypeOf(Dog.prototype) === Animal.prototype);
+console.log(Object.getPrototypeOf(Cat.prototype) === Animal.prototype);
