@@ -90,6 +90,7 @@ const output = document.getElementById("output");
 
 runDemoBtn.addEventListener("click", () => {
   output.innerHTML = `
+    <p>The desribe() function is changed to a dog specific one:
     <p>${dog1.describe()}</p>
     <p>${dog1.bark()}</p>
     <hr>
@@ -100,3 +101,7 @@ runDemoBtn.addEventListener("click", () => {
 
 console.log(Object.getPrototypeOf(Dog.prototype) === Animal.prototype);
 console.log(Object.getPrototypeOf(Cat.prototype) === Animal.prototype);
+
+Dog.prototype.describe = function () {
+  return `${this.name} is a ${this.breed}`;
+};
