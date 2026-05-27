@@ -82,3 +82,18 @@ Cat.prototype.meow = function () {
 const cat1 = new Cat("Kitty", "Chat de goutiere", "Tabby");
 console.log(cat1.describe());
 console.log(cat1.meow());
+
+// ===== task 1 ====
+
+const runDemoBtn = document.getElementById("run-demo-btn");
+const output = document.getElementById("output");
+
+runDemoBtn.addEventListener("click", () => {
+  output.innerHTML = `
+    <p>${dog1.describe()}</p>
+    <p>${dog1.bark()}</p>
+    <hr>
+    <p>${cat1.describe()}</p>
+    <p>${cat1.meow()}</p>
+  `;
+});
