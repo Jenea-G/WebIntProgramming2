@@ -63,3 +63,22 @@ dog1.describe();
 
 // Since Animal.prototype has it, JavaScript uses that method.
 // That is inheritance through the prototype chain.
+
+// PART 5 - Independent tasks
+// ===== task 1 ====
+
+function Cat(name, color) {
+  Animal.call(this, name);
+  this.color = color;
+}
+
+Cat.prototype = Object.create(Animal.prototype);
+Cat.prototype.constructor = Cat;
+
+Cat.prototype.meow = function () {
+  return `${this.name} meows`;
+};
+
+const cat1 = new Cat("Kitty", "Chat de goutiere", "Tabby");
+console.log(cat1.describe());
+console.log(cat1.meow());
