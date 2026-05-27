@@ -50,8 +50,28 @@ runDemoBtn.addEventListener("click", () => {
     <p>${car1.showModel()}</p>
     <p>${car1.start()}</p>
     <hr>
-    <p>${car2.describe()}</p>
-    <p>${car2.showModel()}</p>
-    <p>${car2.stop()}</p>
+    <p>${car3.describe()}</p>
+    <p>${car3.showModel()}</p>
+    <p>${car3.start()}</p>
+    <p>${car3.charge()}</p>
   `;
 });
+
+// PART 5 - Independent tasks
+// ===== task 2 ====
+function ElectricCar(brand, model, batteryLevel) {
+  Car.call(this, brand, model);
+  this.batteryLevel = batteryLevel;
+}
+
+// Inheritance setup
+ElectricCar.prototype = Object.create(Vehicle.prototype);
+ElectricCar.prototype = Object.create(Car.prototype);
+ElectricCar.prototype.constructor = ElectricCar; // ===== what does this line do ? ========= ???
+
+ElectricCar.prototype.charge = function () {
+  this.batteryLevel = 100;
+  return `${this.model} is fully charged`;
+};
+
+const car3 = new ElectricCar("Ford", "Mustang Mach-E", 20);
