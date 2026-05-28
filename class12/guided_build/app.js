@@ -1,5 +1,6 @@
 // add the basic fetch flow
 const loadPostBtn = document.getElementById("load-post-btn");
+const clearBtn = document.getElementById("clear-btn");
 const status = document.getElementById("status");
 const output = document.getElementById("output");
 const inputId = document.getElementById("post-id-input");
@@ -52,3 +53,9 @@ function validatePostId(id) {
 // } catch (error) {
 //   console.log(error.message);
 // }
+
+clearBtn.addEventListener("click", () => {
+  status.textContent = "Click the button to load a post";
+  output.textContent = "";
+  inputId.value = "";
+});
