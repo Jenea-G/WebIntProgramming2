@@ -108,3 +108,17 @@ fetch("https://jsonplaceholder.typicode.com/users/10")
 
 //  try/catch is common in synchronous code
 //  .catch() is common in Promise chains
+
+console.log("=== challenge 1 ==");
+try {
+  const result1 = JSON.parse('{"bad":"json"}');
+  console.log(result1.bad);
+} catch (error) {
+  console.log(error.message);
+}
+try {
+  const result1 = JSON.parse("{bad : json}");
+  console.log(result1.bad);
+} catch (error) {
+  console.log(error.message);
+}
