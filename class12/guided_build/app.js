@@ -29,6 +29,9 @@ loadPostBtn.addEventListener("click", () => {
       })
       .catch((error) => {
         status.textContent = `Failed to load post: ${error.message}`;
+      })
+      .finally(() => {
+        status.textContent += " Request finished.";
       });
   } catch (error) {
     status.textContent = `Failed to load post: ${error.message}`;
