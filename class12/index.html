@@ -13,6 +13,50 @@
         <h2>Class 12</h2>
         <h1>Error Handling</h1>
 
+        <section>
+            <h2>Reflection Questions</h2>
+            <ol>
+                <li>What is the purpose of try/catch?
+                    <p>
+                        The purpose of try/catch is to prevent the program from crashing and to show useful feedback
+                        when
+                        errors or invalid inputs occur.
+                    </p>
+                </li>
+
+                <li>What does throw new Error(...) do?
+                    <p>
+                        It manually creates and throws an error when something does not work as intended or when a
+                        condition
+                        is invalid, even if the JavaScript syntax itself is correct.
+                    </p>
+                </li>
+
+                <li>Why do we check response.ok in fetch code?
+                    <p>
+                        We check response.ok to make sure the HTTP request was successful before trying to use the
+                        returned
+                        data. fetch() does not automatically reject promises for HTTP errors like 404.
+                    </p>
+                </li>
+
+                <li>What is the difference between sync error handling and Promise .catch()?
+                    <p>
+                        Synchronous error handling with try/catch handles errors that happen immediately during code
+                        execution, while Promise .catch() handles asynchronous errors that happen later, such as fetch
+                        request failures.
+                    </p>
+                </li>
+
+                <li>What is finally useful for?
+                    <p>
+                        finally is useful for running code that should execute no matter what happens, whether an error
+                        occurs or not.
+                    </p>
+                </li>
+            </ol>
+        </section>
+
     </main>
 
 </body>
