@@ -17,7 +17,7 @@ class Book {
   }
 
   static isValidPageCount(value) {
-    return value > 0;
+    return typeof value === "number" && value > 0;
   }
 
   set pages(value) {
@@ -54,7 +54,7 @@ class BankAccount {
   }
 
   static isValidAmount(value) {
-    return value >= 0;
+    return typeof value === "number" && value >= 0;
   }
 
   set balance(value) {
@@ -97,7 +97,7 @@ class Course {
   }
 
   set credits(value) {
-    if (value > 0) {
+    if (typeof value === "number" && value > 0) {
       this.__credits = value;
     } else {
       throw new Error("Credits should be a positive number.");
@@ -137,7 +137,7 @@ class Movie {
   }
 
   static isValidRating(value) {
-    return value >= 0 && value <= 10;
+    return value >= 0 && value <= 10 && typeof value === "number";
   }
 
   set rating(value) {
