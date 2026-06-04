@@ -45,6 +45,39 @@ console.log(b1.pages);
 //  getter for balance
 //  setter that rejects negative balances
 //  static method isValidAmount()
+console.log("=== Ex.1 ====");
+
+class BankAccount {
+  constructor(owner, balance) {
+    this.owner = owner;
+    this.balance = balance;
+  }
+
+  static isValidAmount(value) {
+    return value >= 0;
+  }
+
+  set balance(value) {
+    if (BankAccount.isValidAmount(value)) {
+      this.__balance = value;
+    } else {
+      throw new Error("The balance should be positive or equal to 0");
+    }
+  }
+
+  get balance() {
+    return this.__balance;
+  }
+
+  get info() {
+    return `${this.owner} has a balance of ${this.balance}$`;
+  }
+}
+
+// const acc1 = new BankAccount("Pam", -20);
+const acc1 = new BankAccount("Pam", 20);
+console.log(acc1.balance);
+console.log(acc1.info);
 
 // 3.
 // Create a Course class with:
