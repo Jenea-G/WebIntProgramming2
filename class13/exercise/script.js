@@ -129,3 +129,36 @@ console.log(course1.label);
 //  getter/setter for rating
 //  setter must reject values outside 0–10
 //  static method isValidRating(value)
+console.log("==== Ex.4 ====");
+class Movie {
+  constructor(title, rating) {
+    this.title = title;
+    this.rating = rating;
+  }
+
+  static isValidRating(value) {
+    return value >= 0 && value <= 10;
+  }
+
+  set rating(value) {
+    if (Movie.isValidRating(value)) {
+      this.__rating = value;
+    } else {
+      throw new Error("Rating should be between 0 and 10 inclusive.");
+    }
+  }
+
+  get rating() {
+    return this.__rating;
+  }
+
+  get description() {
+    return `${this.title} has a rating of ${this.rating}`;
+  }
+}
+
+const m1 = new Movie("Inception", 3);
+console.log(m1.description);
+m1.rating = 8;
+// m1.rating = -1;
+console.log(m1.description);
