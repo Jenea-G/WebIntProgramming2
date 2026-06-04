@@ -45,7 +45,7 @@ console.log(b1.pages);
 //  getter for balance
 //  setter that rejects negative balances
 //  static method isValidAmount()
-console.log("=== Ex.1 ====");
+console.log("==== Ex.2 ====");
 
 class BankAccount {
   constructor(owner, balance) {
@@ -86,6 +86,38 @@ console.log(acc1.info);
 //  getter label
 //  getter/setter for credits
 //  static property for schoolName
+console.log("==== Ex.3 ====");
+
+class Course {
+  static schoolName = "Vanier";
+
+  constructor(title, credits) {
+    this.title = title;
+    this.credits = credits;
+  }
+
+  set credits(value) {
+    if (value > 0) {
+      this.__credits = value;
+    } else {
+      throw new Error("Credits should be a positive number.");
+    }
+  }
+
+  get credits() {
+    return this.__credits;
+  }
+
+  get label() {
+    return `${this.title} course at ${Course.schoolName} gives ${this.credits} credits.`;
+  }
+}
+
+const course1 = new Course("Web programming", 30);
+console.log(course1.label);
+Course.schoolName = "Saint Laurent";
+console.log(course1.label);
+// course1.credits = 0;
 
 // 4.
 // Create a class called Movie.
