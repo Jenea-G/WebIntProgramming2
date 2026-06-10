@@ -41,21 +41,48 @@ export function renderTournaments(tournaments, container) {
       fetchRegistrations()
         .then((registrations) => {
           console.log(registrations[1].playerName);
+
+          const regStatus = document.getElementById("status-reg");
+          regStatus.textContent = "Loading registrations...";
+          const detailsDiv = document.getElementById("details");
+          detailsDiv.textContent = "";
+          renderRegistrations(registrations, detailsDiv, id);
+
           regStatus.textContent = "Registrations loaded";
         })
         .catch((error) => {
           regStatus.textContent = `Failed to load registrations: ${error.message}`;
         });
-
-      const regStatus = document.getElementById("status-reg");
-      regStatus.textContent = "Loading registrations...";
-      const detailsDiv = document.getElementById("details");
-      detailsDiv.textContent = "";
-      //   renderRegistrations(registrations, detailsDiv, regStatus, id)
     });
   });
 }
 
-// function renderRegistrations(registrations, detailsDiv, regStatus, id){
-//     const registrations =
-// }
+function renderRegistrations(registrations, detailsDiv, id) {
+  const theRegistrations = registrations.filter(
+    (item) => item.tournamentId === id,
+  );
+
+  theRegistrations.forEach((registration) => {
+    const article = document.createElement("article");
+    const div = document.createElement("div");
+
+    article.classList.add("col-12", "col-md-4");
+    div.classList.add(
+      "border",
+      "border-primary-subtle",
+      "rounded",
+      "p-3",
+      "mb-3",
+    );
+
+    div.innerHTML = `
+      <h5 class="text-primary">${registration.playerName}</h5>
+      <p><strong>Gamer Tag:</strong> ${registration.gamerTag}</p>
+      <p><strong>Ticket Type:</strong> ${registration.ticketType}</p>
+      <p><strong>Registration Status:</strong> ${registration.status}</p>
+    `;
+
+    article.appendChild(div);
+    detailsDiv.appendChild(article);
+  });
+}
