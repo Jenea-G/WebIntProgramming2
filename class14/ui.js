@@ -1,3 +1,5 @@
+import { fetchRegistrations } from "./api.js";
+
 export function renderTournaments(tournaments, container) {
   container.innerHTML = "";
   //   container.classList.add("gap-2");
@@ -31,12 +33,29 @@ export function renderTournaments(tournaments, container) {
     article.appendChild(div);
     container.appendChild(article);
 
+    const id = tournament.id;
+
     viewBtn.addEventListener("click", () => {
       console.log("button clicked");
+
+      fetchRegistrations()
+        .then((registrations) => {
+          console.log(registrations[1].playerName);
+          regStatus.textContent = "Registrations loaded";
+        })
+        .catch((error) => {
+          regStatus.textContent = `Failed to load registrations: ${error.message}`;
+        });
+
       const regStatus = document.getElementById("status-reg");
       regStatus.textContent = "Loading registrations...";
       const detailsDiv = document.getElementById("details");
       detailsDiv.textContent = "";
+      //   renderRegistrations(registrations, detailsDiv, regStatus, id)
     });
   });
 }
+
+// function renderRegistrations(registrations, detailsDiv, regStatus, id){
+//     const registrations =
+// }
