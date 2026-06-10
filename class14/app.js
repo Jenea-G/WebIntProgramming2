@@ -1,4 +1,4 @@
-import { fetchTournaments } from "./api.js";
+import { fetchTournaments, fetchRegistrations } from "./api.js";
 import { renderTournaments } from "./ui.js";
 
 const loadBtn = document.getElementById("load");

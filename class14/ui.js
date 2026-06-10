@@ -30,5 +30,13 @@ export function renderTournaments(tournaments, container) {
     div.appendChild(viewBtn);
     article.appendChild(div);
     container.appendChild(article);
+
+    viewBtn.addEventListener("click", () => {
+      console.log("button clicked");
+      const regStatus = document.getElementById("status-reg");
+      regStatus.textContent = "Loading registrations...";
+      const detailsDiv = document.getElementById("details");
+      detailsDiv.textContent = "";
+    });
   });
 }
