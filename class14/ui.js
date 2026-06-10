@@ -38,6 +38,7 @@ export function renderTournaments(tournaments, container) {
     viewBtn.addEventListener("click", () => {
       console.log("button clicked");
       const regStatus = document.getElementById("status-reg");
+      styleStatus(regStatus, "loading");
 
       fetchRegistrations()
         .then((registrations) => {
@@ -49,8 +50,10 @@ export function renderTournaments(tournaments, container) {
           renderRegistrations(registrations, detailsDiv, tournament);
 
           regStatus.textContent = "Registrations loaded";
+          styleStatus(regStatus, "success");
         })
         .catch((error) => {
+          styleStatus(regStatus, "error");
           regStatus.textContent = `Failed to load registrations: ${error.message}`;
         });
     });
@@ -59,7 +62,7 @@ export function renderTournaments(tournaments, container) {
 
 function renderRegistrations(registrations, detailsDiv, tournament) {
   const id = tournament.id;
-  // const id = 7; // - for testing "No registrations" error.
+  //const id = 7; // - for testing "No registrations" error.
   const spotsLeft = tournament.spotsLeft;
   const fee = tournament.entryFee;
   const nOfRegistrations = tournament.registeredPlayers;
@@ -111,4 +114,17 @@ function renderRegistrations(registrations, detailsDiv, tournament) {
   <p><strong>Expected revenue: </strong>${confPlayers * fee} $</p>
   <p><strong>Spots Left: </strong>${spotsLeft}</p>
   `;
+}
+
+export function styleStatus(element, status) {
+  element.classList.remove("alert-success", "alert-secondary", "alert-danger");
+  if (status === "success") {
+    element.classList.add("alert-success");
+  } else if (status === "loading") {
+    element.classList.add("alert-secondary");
+  } else if (status === "error") {
+    element.classList.add("alert-danger");
+  } else {
+    element.classList.add("alert-secondary");
+  }
 }
