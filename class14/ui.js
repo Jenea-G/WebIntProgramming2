@@ -1,4 +1,3 @@
-import { fetchRegistrations } from "./api.js";
 import { Tournament } from "./tournament.js";
 
 export function renderTournaments(tournaments, container) {
@@ -20,6 +19,7 @@ export function renderTournaments(tournaments, container) {
       "mb-3",
     );
     viewBtn.classList.add("btn", "btn-primary", "btn-small");
+    viewBtn.id = `${tournament.id}`;
     div.innerHTML = `
       <h5 class="text-primary">${tournament.name}</h5>
       <p><strong>Game title:</strong> ${tournament.game}</p>
@@ -34,33 +34,10 @@ export function renderTournaments(tournaments, container) {
     div.appendChild(viewBtn);
     article.appendChild(div);
     container.appendChild(article);
-
-    viewBtn.addEventListener("click", () => {
-      console.log("button clicked");
-      const regStatus = document.getElementById("status-reg");
-      styleStatus(regStatus, "loading");
-
-      fetchRegistrations()
-        .then((registrations) => {
-          console.log(registrations[1].playerName);
-
-          regStatus.textContent = "Loading registrations...";
-          const detailsDiv = document.getElementById("details");
-          detailsDiv.textContent = "";
-          renderRegistrations(registrations, detailsDiv, tournament);
-
-          regStatus.textContent = "Registrations loaded";
-          styleStatus(regStatus, "success");
-        })
-        .catch((error) => {
-          styleStatus(regStatus, "error");
-          regStatus.textContent = `Failed to load registrations: ${error.message}`;
-        });
-    });
   });
 }
 
-function renderRegistrations(registrations, detailsDiv, tournament) {
+export function renderRegistrations(registrations, detailsDiv, tournament) {
   const id = tournament.id;
   //const id = 7; // - for testing "No registrations" error.
   const spotsLeft = tournament.spotsLeft;
