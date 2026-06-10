@@ -59,6 +59,7 @@ export function renderTournaments(tournaments, container) {
 
 function renderRegistrations(registrations, detailsDiv, tournament) {
   const id = tournament.id;
+  // const id = 7; // - for testing "No registrations" error.
   const spotsLeft = tournament.spotsLeft;
   const fee = tournament.entryFee;
   const nOfRegistrations = tournament.registeredPlayers;
@@ -71,6 +72,10 @@ function renderRegistrations(registrations, detailsDiv, tournament) {
     (item) => item.tournamentId === id,
   );
 
+  if (Object.keys(theRegistrations).length === 0) {
+    throw new Error("No registrations for the selected tournament were found");
+  }
+
   theRegistrations.forEach((registration) => {
     if (registration.status === "confirmed") {
       confPlayers += 1;
@@ -82,14 +87,14 @@ function renderRegistrations(registrations, detailsDiv, tournament) {
     article.classList.add("col-12", "col-md-4");
     div.classList.add(
       "border",
-      "border-primary-subtle",
+      "border-success-subtle",
       "rounded",
       "p-3",
       "mb-3",
     );
 
     div.innerHTML = `
-      <h5 class="text-primary">${registration.playerName}</h5>
+      <h5 class="text-success">${registration.playerName}</h5>
       <p><strong>Gamer Tag:</strong> ${registration.gamerTag}</p>
       <p><strong>Ticket Type:</strong> ${registration.ticketType}</p>
       <p><strong>Registration Status:</strong> ${registration.status}</p>
@@ -100,10 +105,10 @@ function renderRegistrations(registrations, detailsDiv, tournament) {
   });
 
   summary.innerHTML = `
-  <h4>Summary Information</h4>
+  <h4 class="fw-bold mb-2 text-secondary">Summary for '${tournament.name}':</h4>
   <p><strong>Total number of registrations: </strong>${nOfRegistrations}</p>
   <p><strong>Confirmed players: </strong>${confPlayers}</p>
-  <p><strong>Expected revenue: </strong>${confPlayers * fee}</p>
+  <p><strong>Expected revenue: </strong>${confPlayers * fee} $</p>
   <p><strong>Spots Left: </strong>${spotsLeft}</p>
   `;
 }
