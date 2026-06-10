@@ -1,4 +1,4 @@
-class Tournament {
+export class Tournament {
   constructor(id, name, game, entryFee, maxPlayers, registeredPlayers, status) {
     this.id = id;
     this.name = name;

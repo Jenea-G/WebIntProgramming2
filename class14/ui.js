@@ -1,10 +1,12 @@
 import { fetchRegistrations } from "./api.js";
+import { Tournament } from "./tournament.js";
 
 export function renderTournaments(tournaments, container) {
   container.innerHTML = "";
   //   container.classList.add("gap-2");
 
-  tournaments.forEach((tournament) => {
+  tournaments.forEach((data) => {
+    const tournament = Tournament.fromObject(data);
     const article = document.createElement("article");
     const div = document.createElement("div");
     const viewBtn = document.createElement("button");
@@ -33,20 +35,18 @@ export function renderTournaments(tournaments, container) {
     article.appendChild(div);
     container.appendChild(article);
 
-    const id = tournament.id;
-
     viewBtn.addEventListener("click", () => {
       console.log("button clicked");
+      const regStatus = document.getElementById("status-reg");
 
       fetchRegistrations()
         .then((registrations) => {
           console.log(registrations[1].playerName);
 
-          const regStatus = document.getElementById("status-reg");
           regStatus.textContent = "Loading registrations...";
           const detailsDiv = document.getElementById("details");
           detailsDiv.textContent = "";
-          renderRegistrations(registrations, detailsDiv, id);
+          renderRegistrations(registrations, detailsDiv, tournament);
 
           regStatus.textContent = "Registrations loaded";
         })
@@ -57,12 +57,25 @@ export function renderTournaments(tournaments, container) {
   });
 }
 
-function renderRegistrations(registrations, detailsDiv, id) {
+function renderRegistrations(registrations, detailsDiv, tournament) {
+  const id = tournament.id;
+  const spotsLeft = tournament.spotsLeft;
+  const fee = tournament.entryFee;
+  const nOfRegistrations = tournament.registeredPlayers;
+  let confPlayers = 0;
+
+  const summary = document.getElementById("summary");
+  summary.textContent = "";
+
   const theRegistrations = registrations.filter(
     (item) => item.tournamentId === id,
   );
 
   theRegistrations.forEach((registration) => {
+    if (registration.status === "confirmed") {
+      confPlayers += 1;
+    }
+
     const article = document.createElement("article");
     const div = document.createElement("div");
 
@@ -85,4 +98,12 @@ function renderRegistrations(registrations, detailsDiv, id) {
     article.appendChild(div);
     detailsDiv.appendChild(article);
   });
+
+  summary.innerHTML = `
+  <h4>Summary Information</h4>
+  <p><strong>Total number of registrations: </strong>${nOfRegistrations}</p>
+  <p><strong>Confirmed players: </strong>${confPlayers}</p>
+  <p><strong>Expected revenue: </strong>${confPlayers * fee}</p>
+  <p><strong>Spots Left: </strong>${spotsLeft}</p>
+  `;
 }
