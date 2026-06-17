@@ -43,6 +43,17 @@ class MovieBox extends HTMLElement {
   getPosterUrl() {
     return this.getAttribute("poster-url");
   }
+  //alternative getter:
+  getMovieData() {
+    return {
+      title: this.getAttribute("title") || "Unknown Movie",
+      year: this.getAttribute("year") || "N\A",
+      director: this.getAttribute("director") || "Unknown Director",
+      poster: this.getAttribute("poster-url") || "",
+    };
+  }
+
+  //background: gainsboro;
 
   getStyles() {
     return `
@@ -64,6 +75,10 @@ class MovieBox extends HTMLElement {
   render() {
     const shadow = this.attachShadow({ mode: "open" });
 
+    // you can use this too!
+    const movieData = this.getMovieData();
+    console.log(movieData);
+
     shadow.innerHTML = `
         ${this.getStyles()}
         <div class="card">
@@ -71,10 +86,19 @@ class MovieBox extends HTMLElement {
             <p><strong>Director:</strong> ${this.getDirector()}</p>
             <p><strong>Year:</strong> ${this.getYear()}</p>
             <div class="img">
-            <img src="${this.getPosterUrl()}">
+            <img src="${movieData.poster}">
             </div>
         </div>
     `;
   }
 }
 customElements.define("movie-box", MovieBox);
+
+// getMovieData() {
+//         return {
+//             title: this.getAttribute("title") || "Unknown Movie",
+//             year: this.getAttribute("year") || "N\A",
+//             director: this.getAttribute("director") || "Uknow Director",
+//             poster: this.getAttribute("poster-url") || ""
+//         };
+//     }
