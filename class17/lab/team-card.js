@@ -17,7 +17,7 @@ export class TeamCard extends HTMLElement {
     return this.getAttribute("played");
   }
   getGoalDifference() {
-    return this.getAttribute("goal-difference");
+    return this.getAttribute("goalDifference");
   }
 
   getStyles() {
@@ -65,7 +65,7 @@ export class TeamCard extends HTMLElement {
                 <p>Group ${this.getGroup()}</p>
                 <p>Points: ${this.getPoints()}</p>
                 <p>Matches played: ${this.getPlayed()}</p>
-                <p>Goal difference ${this.getGoalDifference()}</p>
+                <p>Goal difference: ${this.getGoalDifference()}</p>
                 <button>View Details</button>
             </div>
         `;
