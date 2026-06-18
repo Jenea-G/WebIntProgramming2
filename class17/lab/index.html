@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>World Cup Dashboard</title>
     <script type="module" src="app.js"></script>
+    <!-- <script type="module" src="team-card.js"></script> -->
+    <style>
+        #teams-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+    </style>
 </head>
 
 <body>
@@ -18,15 +26,18 @@
 
         <section>
             <h2>Teams</h2>
-            <div id="teams-container"></div>
-        </section>
-
-        <section>
-            <h2>Selected Team</h2>
-            <div id="details-container">
-                <p>No team selected yet.</p>
+            <div id="teams-container">
+                <!-- <team-card name="Abc" group="B" points="3" played="2" goal-difference="5"></team-card>
+                <team-card name="Abc" group="B" points="3" played="2" goal-difference="5"></team-card>
+                <team-card name="Abc" group="B" points="3" played="2" goal-difference="5"></team-card> -->
             </div>
-        </section>
+
+            <section>
+                <h2>Selected Team</h2>
+                <div id="details-container">
+                    <p>No team selected yet.</p>
+                </div>
+            </section>
     </main>
 
 </body>
