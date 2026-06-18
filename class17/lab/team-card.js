@@ -1,4 +1,4 @@
-class TeamCard extends HTMLElement {
+export class TeamCard extends HTMLElement {
   connectedCallback() {
     this.render();
   }
@@ -37,6 +37,18 @@ class TeamCard extends HTMLElement {
                 font-weight: 800;
                 text-align: center;
             }
+            button {
+                padding: 10px 20px;
+                min-width: 80%;
+                border: none;
+                border-radius: 5px;
+                background: white;
+                display: block;
+                margin: 0 auto;
+                transition: 0.3s;
+            }
+            button:hover {
+                opacity: 0.8;}
         </style>
         `;
   }
@@ -54,6 +66,7 @@ class TeamCard extends HTMLElement {
                 <p>Points: ${this.getPoints()}</p>
                 <p>Matches played: ${this.getPlayed()}</p>
                 <p>Goal difference ${this.getGoalDifference()}</p>
+                <button>View Details</button>
             </div>
         `;
   }
