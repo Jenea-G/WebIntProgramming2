@@ -26,7 +26,7 @@ export class TeamCard extends HTMLElement {
             .team-card {
                 padding: 20px;
                 border-radius: 15px;
-                background: #222223ff;
+                background: #333533ff;
                 color: white;
             }
             .title {
@@ -60,7 +60,7 @@ export class TeamCard extends HTMLElement {
         ${this.getStyles()}
             <div class="team-card">
                 <div class="title">
-                    <h2>${this.getName()}</h2>
+                    <h2>⚽️ ${this.getName()}</h2>
                 </div>
                 <p>Group ${this.getGroup()}</p>
                 <p>Points: ${this.getPoints()}</p>
@@ -71,4 +71,3 @@ export class TeamCard extends HTMLElement {
         `;
   }
 }
-customElements.define("team-card", TeamCard);

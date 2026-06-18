@@ -1,4 +1,4 @@
-import { TeamCard } from "./team-card";
+import { TeamCard } from "./team-card.js";
 customElements.define("team-card", TeamCard);
 
 export function renderTeams(teams, container) {
