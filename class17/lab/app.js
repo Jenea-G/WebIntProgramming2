@@ -30,6 +30,23 @@ function main() {
     teamsContainer.innerHTML = "";
     detailContainer.innerHTML = "";
   });
+
+  teamsContainer.addEventListener("team-selected", (e) => {
+    detailStatus.textContent = "Team details loaded successfully.";
+    detailContainer.innerHTML = `
+            <div class="">
+                <div class="">
+                    <p>⚽️ ⚽️ ⚽️ ⚽️ ⚽️ ⚽️</p>
+                    <h2>${e.detail.name} details: </h2>
+                </div>
+                <p>Group ${e.detail.group}</p>
+                <p>Points: ${e.detail.points}</p>
+                <p>Matches played: ${e.detail.played}</p>
+                <p>Goal difference: ${e.detail.goalDifference}</p>
+            </div>
+        `;
+    console.log("details created");
+  });
 }
 
 main();

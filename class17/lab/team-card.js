@@ -53,6 +53,20 @@ export class TeamCard extends HTMLElement {
         `;
   }
 
+  createEvent() {
+    return new CustomEvent("team-selected", {
+      detail: {
+        name: this.getName(),
+        group: this.getGroup(),
+        points: this.getPoints(),
+        played: this.getPlayed(),
+        goalDifference: this.getGoalDifference(),
+      },
+      bubbles: true,
+      // composed: true,
+    });
+  }
+
   render() {
     const shadowCard = this.attachShadow({ mode: "open" });
 
@@ -66,8 +80,20 @@ export class TeamCard extends HTMLElement {
                 <p>Points: ${this.getPoints()}</p>
                 <p>Matches played: ${this.getPlayed()}</p>
                 <p>Goal difference: ${this.getGoalDifference()}</p>
-                <button>View Details</button>
+                <button id="details-btn">View Details</button>
             </div>
         `;
+
+    const detailBtn = this.shadowRoot.getElementById(`details-btn`);
+
+    detailBtn.addEventListener("click", () => {
+      console.log("Details button clicked");
+      const detailStatus = document.getElementById("detail-status");
+      detailStatus.textContent = `Loading team ${this.id} details...`;
+      const event = this.createEvent();
+
+      this.dispatchEvent(event);
+      console.log("The event dispatched: ", event);
+    });
   }
 }
