@@ -32,10 +32,10 @@ export class TeamCard extends HTMLElement {
             .title {
                 margin-bottom: 10px;
                 border-bottom: 1px solid #ffffffb3;
+                text-align: center;
             }
             .title h2 {
                 font-weight: 800;
-                text-align: center;
             }
             button {
                 padding: 10px 20px;
@@ -61,6 +61,7 @@ export class TeamCard extends HTMLElement {
         points: this.getPoints(),
         played: this.getPlayed(),
         goalDifference: this.getGoalDifference(),
+        styles: this.getStyles(),
       },
       bubbles: true,
       // composed: true,

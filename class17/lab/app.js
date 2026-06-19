@@ -34,9 +34,10 @@ function main() {
   teamsContainer.addEventListener("team-selected", (e) => {
     detailStatus.textContent = "Team details loaded successfully.";
     detailContainer.innerHTML = `
-            <div class="">
-                <div class="">
-                    <p>⚽️ ⚽️ ⚽️ ⚽️ ⚽️ ⚽️</p>
+            ${e.detail.styles}
+            <div class="team-card">
+                <div class="title">
+                    <p>⚽️ ⚽️ ⚽️</p>
                     <h2>${e.detail.name} details: </h2>
                 </div>
                 <p>Group ${e.detail.group}</p>

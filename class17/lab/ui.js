@@ -11,25 +11,5 @@ export function renderTeams(teams, container) {
     }
     // Object.entries() - converts Object into an array [ [key, value]..], the loop converts [key, value] into attributes.
     container.appendChild(teamCard);
-
-    // const detailBtn = document.getElementById(`${team.id}`);
-    // if (!detailBtn) return;
-    // detailBtn.addEventListener("click", () => {
-    //   console.log("Details button clicked");
-    //   const detailStatus = document.getElementById("detail-status");
-    //   detailStatus.textContent = `Loading team ${team.id} details...`;
-
-    //   const event = new CustomEvent("team-selected", {
-    //     detail: {
-    //       name: `${team.id}`,
-    //       group: `${team.group}`,
-    //       points: `${team.points}`,
-    //       played: `${team.played}`,
-    //       goalDifference: `${team.goalDifference}`,
-    //     },
-    //   });
-
-    //   console.log(event);
-    // });
   }
 }
