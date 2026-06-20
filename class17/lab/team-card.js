@@ -37,7 +37,7 @@ export class TeamCard extends HTMLElement {
             .title h2 {
                 font-weight: 800;
             }
-            button {
+            #details-btn {
                 padding: 10px 20px;
                 min-width: 80%;
                 border: none;

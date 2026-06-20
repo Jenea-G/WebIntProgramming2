@@ -22,6 +22,26 @@ export class Team {
     return this.__points;
   }
 
+  set name(string) {
+    if (string.trim().length > 0) {
+      this.__name = string;
+    } else throw new Error("Name of the team cannot be empty");
+  }
+
+  get name() {
+    return this.__name;
+  }
+
+  set played(value) {
+    if (value >= 0) {
+      this.__played = value;
+    } else throw new Error("Number of games played cannot be negative");
+  }
+
+  get played() {
+    return this.__played;
+  }
+
   static fromObject(data) {
     return new Team(
       data.id,
