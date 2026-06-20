@@ -49,6 +49,9 @@ export class TeamCard extends HTMLElement {
             }
             button:hover {
                 opacity: 0.8;}
+            .highlighted {
+                border: 4px solid green;  
+            }
         </style>
         `;
   }
@@ -68,12 +71,20 @@ export class TeamCard extends HTMLElement {
     });
   }
 
+  highlighted() {
+    if (this.getPoints() >= 5) {
+      return "highlighted";
+    } else return "";
+  }
+
   render() {
     const shadowCard = this.attachShadow({ mode: "open" });
 
     shadowCard.innerHTML = `
         ${this.getStyles()}
-            <div class="team-card">
+            <div class="team-card ${this.highlighted()}"
+            
+            >
                 <div class="title">
                     <h2>⚽️ ${this.getName()}</h2>
                 </div>
