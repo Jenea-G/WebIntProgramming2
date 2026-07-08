@@ -4,6 +4,7 @@ const players = [
   { name: "Messi", country: "Argentina", number: 10 },
   { name: "Mbappé", country: "France", number: 10 },
   { name: "Endo", country: "Japan", number: 6 },
+  { name: "Bellingham", country: "England", number: 10 },
 ];
 
 function createPlayerCard(player) {
