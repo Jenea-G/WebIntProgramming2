@@ -1,0 +1,11 @@
+#players-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+
+.player-card {
+    background-color: rgba(218, 165, 32, 0.858);
+    border-radius: 20px;
+    padding: 20px;
+}
