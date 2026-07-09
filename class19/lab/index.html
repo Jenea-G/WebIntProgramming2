@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" type="module"></script>
+</head>
+
+<body>
+    <main>
+        <section>
+            <div class="container">
+                <h1>Festival Lineup Guide</h1>
+                <p>Discover the festival lineup, explore featured artists, and learn more about each performer. Browse
+                    the complete selection of artists through interactive cards and easily find your favorites. You can
+                    also filter or highlight artists to personalize your festival experience.</p>
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <h2>Artists</h2>
+                <div class="controls">
+                    <button class="btn" id="load-btn">Load Lineup</button>
+                    <button class="btn btn--clear" id="clear-btn">Clear</button>
+                </div>
+                <p id="status-message">Press load button to load artists</p>
+                <template id="artist">
+                    <div class="artist-card">
+                        <h3 class="artist-name">Name</h3>
+                        <p class="genre">Genre</p>
+                        <p class="stage">Stage</p>
+                        <p class="time">Time: </p>
+                        <p class="coutnry">Coutnry:</p>
+                        <button class="details-btn">View Details</button>
+                    </div>
+                </template>
+                <div id="artists-container"></div>
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <div class="details-block"></div>
+            </div>
+        </section>
+    </main>
+
+</body>
+
+</html>
