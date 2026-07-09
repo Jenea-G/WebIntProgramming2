@@ -33,8 +33,7 @@ export class Artist {
       data.genre,
       data.stage,
       data.time,
-      data,
-      country,
+      data.country,
       data.headliner,
     );
   }
