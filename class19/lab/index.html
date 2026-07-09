@@ -28,6 +28,36 @@
                 </div>
                 <p id="status-message">Press load button to load artists</p>
                 <template id="artist">
+                    <style>
+                        #artists-container {
+                            display: flex;
+                            justify-content: center;
+                            flex-wrap: wrap;
+                            gap: 30px;
+                        }
+
+                        .artist-card {
+                            min-width: 230px;
+                            aspect-ratio: 1;
+                            border-radius: 50%;
+                            background: rgba(218, 165, 32, .85);
+                            padding: 50px;
+                        }
+
+                        .details-btn {
+                            display: block;
+                            margin: 0 auto;
+                            border: none;
+                            padding: 5px 20px;
+                            cursor: pointer;
+                            background: white;
+                            transition: 0.3s;
+                        }
+
+                        .details-btn:hover {
+                            opacity: 0.7;
+                        }
+                    </style>
                     <div class="artist-card">
                         <h3 class="artist-name">Name</h3>
                         <p class="genre">Genre</p>

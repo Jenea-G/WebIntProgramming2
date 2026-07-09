@@ -8,21 +8,6 @@ section {
     padding: 30px 0;
 }
 
-#artists-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 30px;
-}
-
-.artist-card {
-    min-width: 230px;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background: rgba(218, 165, 32, .85);
-    padding: 50px;
-}
-
 .btn {
     margin-right: 15px;
     border: none;
@@ -39,17 +24,6 @@ section {
     color: rgb(41, 41, 41);
 }
 
-.details-btn {
-    display: block;
-    margin: 0 auto;
-    border: none;
-    padding: 5px 20px;
-    cursor: pointer;
-    background: white;
-    transition: 0.3s;
-}
-
-.details-btn:hover,
 .btn:hover {
     opacity: 0.7;
 }
