@@ -17,12 +17,13 @@ export class ArtistCard extends HTMLElement {
       `Country: ${artist.country}`;
 
     shadowCard.querySelector(".details-btn").addEventListener("click", () => {
-      dispatchEvent(
+      this.dispatchEvent(
         new CustomEvent("artist-selected", {
           detail: artist,
           bubbles: true,
         }),
       );
+      //console.log("details button clicked");
     });
   }
 }

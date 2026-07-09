@@ -5,7 +5,7 @@ export class Artist {
     this.genre = genre;
     this.stage = stage;
     this.time = time;
-    this.coutnry = country;
+    this.country = country;
     this.headliner = headliner;
   }
 
