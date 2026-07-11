@@ -57,6 +57,7 @@ clearBtn.addEventListener("click", () => {
 container.addEventListener("artist-selected", (event) => {
   detailsBlock.innerHTML = `
     <h4>Details for: ${event.detail.name}</h4>
+    ${event.detail.headliner ? "<p>Headliner</p>" : ""}
     <ul>
         <li>Genre: ${event.detail.genre}</li>
         <li>Stage: ${event.detail.stage}</li>
