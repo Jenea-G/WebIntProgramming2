@@ -33,4 +33,9 @@ section {
     justify-content: center;
     flex-wrap: wrap;
     gap: 30px;
+
+}
+
+.controls {
+    margin-bottom: 30px;
 }

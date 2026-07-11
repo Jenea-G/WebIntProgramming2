@@ -1,5 +1,5 @@
 import { fetchArtists } from "./api.js";
-import { renderArtists } from "./ui.js";
+import { createControls, renderArtists } from "./ui.js";
 import { Artist } from "./artist.js";
 
 // const data = fetchArtists();
@@ -8,15 +8,19 @@ const loadBtn = document.getElementById("load-btn");
 const clearBtn = document.getElementById("clear-btn");
 const statusMessage = document.getElementById("status-message");
 const container = document.getElementById("artists-container");
+const controlsContainer = document.getElementById("controls-container");
 const detailsBlock = document.getElementById("details-block");
+
+let artistsList = [];
 
 loadBtn.addEventListener("click", () => {
   statusMessage.textContent = "Loading lineup...";
   fetchArtists()
     .then((artists) => {
-      const artistsList = artists.map((a) => Artist.fromObject(a));
+      artistsList = artists.map((a) => Artist.fromObject(a));
       //console.log(typeof artists);
       //console.log(artistsList);
+      createControls(controlsContainer);
       renderArtists(artistsList, container);
       statusMessage.textContent = "Lineup loaded successfully.";
     })
@@ -25,9 +29,28 @@ loadBtn.addEventListener("click", () => {
     });
 });
 
+controlsContainer.addEventListener("click", (event) => {
+  if (!event.target.classList.contains("stage-btn")) return;
+
+  const selectedStage = event.target.dataset.stage;
+
+  let filteredArtists;
+
+  if (selectedStage === "All") {
+    filteredArtists = artistsList;
+  } else {
+    filteredArtists = artistsList.filter(
+      (artist) => artist.stage === selectedStage,
+    );
+  }
+  // console.log("controls clicked");
+  renderArtists(filteredArtists, container);
+});
+
 clearBtn.addEventListener("click", () => {
   statusMessage.textContent = "Lineup cleared.";
   container.textContent = "";
+  controlsContainer.textContent = "";
   detailsBlock.textContent = "";
 });
 
