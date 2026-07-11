@@ -11,22 +11,22 @@ const container = document.getElementById("artists-container");
 const detailsBlock = document.getElementById("details-block");
 
 loadBtn.addEventListener("click", () => {
-  statusMessage.textContent = "Loading Artists...";
+  statusMessage.textContent = "Loading lineup...";
   fetchArtists()
     .then((artists) => {
       const artistsList = artists.map((a) => Artist.fromObject(a));
       //console.log(typeof artists);
       //console.log(artistsList);
       renderArtists(artistsList, container);
-      statusMessage.textContent = "Artists data successfully loaded.";
+      statusMessage.textContent = "Lineup loaded successfully.";
     })
     .catch((error) => {
-      statusMessage.textContent = `Couldn't load data: ${error}`;
+      statusMessage.textContent = `Failed to load lineup: ${error}`;
     });
 });
 
 clearBtn.addEventListener("click", () => {
-  statusMessage.textContent = "Press load button to load artists";
+  statusMessage.textContent = "Lineup cleared.";
   container.textContent = "";
   detailsBlock.textContent = "";
 });
