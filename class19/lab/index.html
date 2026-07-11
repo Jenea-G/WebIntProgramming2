@@ -33,8 +33,9 @@
                             min-width: 230px;
                             aspect-ratio: 1;
                             border-radius: 50%;
-                            background: rgba(218, 165, 32, .85);
+                            background: rgba(218, 165, 32, 0.87);
                             padding: 50px;
+                            position: relative;
                         }
 
                         .details-btn {
@@ -49,6 +50,14 @@
 
                         .details-btn:hover {
                             opacity: 0.7;
+                        }
+
+                        .headliner::after {
+                            content: "⭐️";
+                            font-size: 60px;
+                            position: absolute;
+                            top: 30px;
+                            right: 60px;
                         }
                     </style>
                     <div class="artist-card">

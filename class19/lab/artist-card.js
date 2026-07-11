@@ -16,6 +16,9 @@ export class ArtistCard extends HTMLElement {
     shadowCard.querySelector(".country").textContent =
       `Country: ${artist.country}`;
 
+    if (artist.headliner)
+      shadowCard.querySelector(".artist-card").classList.add("headliner");
+
     shadowCard.querySelector(".details-btn").addEventListener("click", () => {
       this.dispatchEvent(
         new CustomEvent("artist-selected", {
