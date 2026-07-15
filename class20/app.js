@@ -15,3 +15,12 @@ button.addEventListener("click", async () => {
     container.appendChild(article);
   });
 });
+
+// this code is messy
+
+// ==== 4 application layers are:  ===
+
+//  1 - smth that retrieves data (api.js)
+//  2 - smth that represents one event (event.js)
+//  3 - smth that displays data and messages (ui.js)
+//  4 - smth that coordinates the application (app.js)
