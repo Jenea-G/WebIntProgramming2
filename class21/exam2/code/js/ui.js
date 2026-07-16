@@ -26,7 +26,8 @@ export function renderError(error) {
   performanceCount.textContent = "0";
 }
 
-export function renderPerformances(performance) {
+export function renderPerformance(performance) {
+  // rename to match the function called in app.js
   performanceContainer.innerHTML = "";
 
   if (!performance) {

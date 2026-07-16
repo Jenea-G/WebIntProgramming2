@@ -1,149 +1,147 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+  <meta charset="UTF-8" />
 
-    <title>Festival Lineup</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="stylesheet" href="./css/styles.css" />
-  </head>
+  <title>Festival Lineup</title>
 
-  <body>
-    <header class="site-header">
-      <h1>Festival Lineup</h1>
-    </header>
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
 
-    <main class="container">
-      <section class="controls">
-        <button id="load-lineup" type="button">Load Lineup</button>
+<body>
+  <header class="site-header">
+    <h1>Festival Lineup</h1>
+  </header>
 
-        <label for="search-input"> Search </label>
+  <main class="container">
+    <section class="controls">
+      <button id="load-lineup" type="button">Load Lineup</button>
 
-        <input
-          id="search-input"
-          type="search"
-          placeholder="Performance or artist"
-        />
+      <label for="search-input"> Search </label>
 
-        <label for="stage-filter"> Stage </label>
+      <input id="search-input" type="search" placeholder="Performance or artist" />
 
-        <select id="stage-filter">
-          <option value="">All stages</option>
+      <label for="stage-filter"> Stage </label>
 
-          <option value="Main Hall">Main Hall</option>
+      <select id="stage-filter">
+        <option value="">All stages</option>
 
-          <option value="Basement">Basement</option>
+        <option value="Main Hall">Main Hall</option>
 
-          <option value="Rooftop">Rooftop</option>
-        </select>
+        <option value="Basement">Basement</option>
 
-        <label>
-          <input id="tickets-filter" type="checkbox" />
+        <option value="Rooftop">Rooftop</option>
+      </select>
 
-          Available tickets only
-        </label>
+      <label>
+        <input id="tickets-filter" type="checkbox" />
 
-        <label>
-          <input id="featured-filter" type="checkbox" />
+        Available tickets only
+      </label>
 
-          Featured only
-        </label>
+      <label>
+        <input id="featured-filter" type="checkbox" />
 
-        <label for="sort-select"> Sort </label>
+        Featured only
+      </label>
 
-        <select id="sort-select">
-          <option value="time-asc">Time ascending</option>
+      <label for="sort-select"> Sort </label>
 
-          <option value="price-asc">Price ascending</option>
+      <select id="sort-select">
+        <option value="time-asc">Time ascending</option>
 
-          <option value="price-desc">Price descending</option>
+        <option value="price-asc">Price ascending</option>
 
-          <option value="artist-asc">Artist A–Z</option>
-        </select>
+        <option value="price-desc">Price descending</option>
 
-        <button id="reset-filters" type="button">Reset Filters</button>
-      </section>
+        <option value="artist-asc">Artist A–Z</option>
+      </select>
 
-      <section class="summary">
-        <p id="status">The festival lineup has not been loaded.</p>
+      <button id="reset-filters" type="button">Reset Filters</button>
+    </section>
 
-        <p>
-          <strong> Visible performances: </strong>
+    <section class="summary">
+      <p id="status">The festival lineup has not been loaded.</p>
 
-          <span id="performance-count"> 0 </span>
-        </p>
+      <p>
+        <strong> Visible performances: </strong>
 
-        <p>
-          <strong> Available tickets: </strong>
+        <span id="performance-count"> 0 </span>
+      </p>
 
-          <span id="ticket-count"> 0 </span>
-        </p>
+      <p>
+        <strong> Available tickets: </strong>
 
-        <p>
-          <strong> Average ticket price: </strong>
+        <span id="ticket-count"> 0 </span>
+      </p>
 
-          <span id="average-price"> $0.00 </span>
-        </p>
-      </section>
+      <p>
+        <strong> Average ticket price: </strong>
 
-      <section id="performance-list" class="performance-grid"></section>
-    </main>
+        <span id="average-price"> $0.00 </span>
+      </p>
+    </section>
 
-    <template id="performance-card-template">
-      <style>
-        :host {
-          display: block;
-        }
+    <section id="performance-list" class="performance-grid"></section>
+  </main>
 
-        .performance-card {
-          height: 100%;
-          padding: 1rem;
-          border: 1px solid #bbb;
-          border-radius: 0.5rem;
-          background: white;
-          box-sizing: border-box;
-        }
+  <template id="performance-card-template">
+    <style>
+      :host {
+        display: block;
+      }
 
-        .performance-card.featured {
-          border-width: 3px;
-        }
+      .performance-card {
+        height: 100%;
+        padding: 1rem;
+        border: 1px solid #bbb;
+        border-radius: 0.5rem;
+        background: white;
+        box-sizing: border-box;
+      }
 
-        .performance-card.sold-out {
-          opacity: 0.65;
-        }
+      .performance-card.featured {
+        border-width: 3px;
+      }
 
-        h2 {
-          margin-top: 0;
-        }
+      .performance-card.sold-out {
+        opacity: 0.65;
+      }
 
-        .lineup-label {
-          font-weight: bold;
-        }
-      </style>
+      h2 {
+        margin-top: 0;
+      }
 
-      <article class="performance-card">
-        <h2 class="title"></h2>
+      .lineup-label {
+        font-weight: bold;
+      }
+    </style>
 
-        <p class="artist"></p>
+    <article class="performance-card">
+      <h2 class="title"></h2>
 
-        <p class="country"></p>
+      <p class="artist"></p>
 
-        <p class="genre"></p>
+      <p class="country"></p>
 
-        <p class="stage"></p>
+      <p class="genre"></p>
 
-        <p class="time"></p>
+      <p class="stage"></p>
 
-        <p class="price"></p>
+      <p class="time"></p>
 
-        <p class="tickets"></p>
+      <p class="price"></p>
 
-        <p class="lineup-label"></p>
-      </article>
-    </template>
+      <p class="tickets"></p>
 
-    <script src="./js/app.js"></script>
-  </body>
+      <p class="lineup-label"></p>
+    </article>
+  </template>
+
+  <script src="./js/app.js" type="module"></script>
+</body>
+
 </html>

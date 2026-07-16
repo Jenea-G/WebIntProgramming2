@@ -1,15 +1,16 @@
 export async function getFestivalData() {
-  const artistResponse = fetch("./artist.json");
+  const artistResponse = await fetch("./artists.json"); //add await, correct file name
 
-  const performanceResponse = fetch("./performances.json");
+  const performanceResponse = await fetch("./performances.json"); //add await
 
-  const responses = Promise.all(artistResponse, performanceResponse);
+  //const responses = Promise.all(artistResponse, performanceResponse);
 
-  if (artistResponse.ok || performanceResponse.ok) {
+  if (!artistResponse.ok || !performanceResponse.ok) {
+    // logic inversion fix
     throw new Error("Festival data could not be loaded.");
   }
 
-  const artists = artistResponse.json;
+  const artists = artistResponse.json(); //method lacking ()
 
   const performances = performanceResponse.json();
 

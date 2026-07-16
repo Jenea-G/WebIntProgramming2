@@ -1,28 +1,28 @@
-import getFestivalData from "./api.js";
+import { getFestivalData } from "./api.js"; // curly brackets for importing
 
 import { Artist } from "./Artist.js";
 
-import { Performances } from "./Performance.js";
+import { Performance } from "./Performance.js"; // we have Performace class in the file not Performances class
 
 import { FeaturedPerformance } from "./FeaturedPerformance.js";
 
-import "./PerformanceCards.js";
+import { PerformanceCard } from "./PerformanceCards.js";
 
-import { renderLoading, renderErrors, renderPerformance } from "./ui.js";
+import { renderLoading, renderError, renderPerformance } from "./ui.js"; //SyntaxError: The requested module './ui.js' does not provide an export named 'renderErrors' (at app.js:11:25)
 
-const loadButton = document.getElementById("load-festival");
+const loadButton = document.getElementById("load-lineup"); // correct button id
 
-const searchInput = document.getElementById("search");
+const searchInput = document.getElementById("search-input"); // correct input id
 
 const stageFilter = document.getElementById("stage-filter");
 
-const ticketsFilter = document.getElementById("ticket-filter");
+const ticketsFilter = document.getElementById("tickets-filter"); // correct checkbox id
 
-const featuredFilter = document.getElementById("featured-only");
+const featuredFilter = document.getElementById("featured-filter"); // correct checkbox id
 
-const sortSelect = document.getElementById("sort-filter");
+const sortSelect = document.getElementById("sort-select"); // correct id
 
-const resetButton = document.getElementById("reset");
+const resetButton = document.getElementById("reset-filters"); // correct id
 
 let performances;
 
@@ -54,7 +54,7 @@ async function loadLineup() {
         );
       }
 
-      return new Performances(
+      return new Performance( // to match the imported class name
         item.id,
         item.title,
         artist,
@@ -76,7 +76,7 @@ async function loadLineup() {
   } catch (error) {
     console.log("Lineup loaded:", error);
 
-    renderErrors(error.message);
+    renderError(error.message); // match imported function name
   }
 
   loadButton.disabled = true;
@@ -141,16 +141,16 @@ function resetFilters() {
   applyFilters();
 }
 
-loadButton.addEventListener("click", loadLineup);
+loadButton.addEventListener("click", loadLineup); //Cannot read properties of null (reading 'addEventListener' at app.js:144:12
 
-searchInput.addEventListener("change", applyFilters);
+searchInput.addEventListener("change", applyFilters); //Cannot read properties of null (reading 'addEventListener') at app.js:146
 
 stageFilter.addEventListener("input", applyFilters);
 
-ticketsFilter.addEventListener("change", applyFilters);
+ticketsFilter.addEventListener("change", applyFilters); //TypeError: Cannot read properties of null
 
-featuredFilter.addEventListener("change", applyFilters);
+featuredFilter.addEventListener("change", applyFilters); //TypeError: Cannot read properties of null
 
-sortSelect.addEventListener("change", applyFilters);
+sortSelect.addEventListener("change", applyFilters); //TypeError: Cannot read properties of null
 
 resetButton.addEventListener("click", resetFilters);
