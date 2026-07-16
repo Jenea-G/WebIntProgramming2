@@ -36,3 +36,27 @@ Performance.js
 
 **Test:**  
 Reloaded page and checked the console, error have disappiared.
+
+==============
+
+## Syntax Errors - Custom Element creation error
+
+**File:**  
+PerformanceCard.js
+
+**Problem:**
+
+- Uncaught SyntaxError: 'super' keyword unexpected here (at PerformanceCard.js:3:9)
+- PerformanceCard did not extend HTMLElement.
+- TypeError: Class constructor PerformanceCard cannot be invoked without 'new' (line 67 remove ())
+- shadow do not attach clone content
+- SyntaxError: Failed to execute 'define' on 'CustomElementRegistry': "performance" is not a valid custom element name at PerformanceCard.js:67:16
+
+**Fix:**
+
+- added `extends HTMLElement` used connectedCallback() instead of a constructor
+- added `.content` to `shadow.appendChild(template.content.cloneNode(true))`;
+- fixed custom element definition constructor: removed (), replaced element name "performance" with "performance-card" as the name should contain hyphen.
+
+**Test:**
+checked for PerformanceCard error in console.
