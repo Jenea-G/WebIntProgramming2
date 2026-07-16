@@ -1,21 +1,21 @@
 export class Performance {
-  constructor(id, title, artist, stage, time, ticketPrice, ticketsRemaining) {
+  constructor(id, title, artistId, stage, time, ticketPrice, ticketsRemaining) {
     this.id = id;
-    this.name = title;
-    this.artist = artist;
-    this.stage = time;
-    this.time = stage;
-    this.ticketPrice = String(ticketPrice);
-    this.ticketsRemaining = String(ticketsRemaining);
+    this.title = title;
+    this.artistId = artistId;
+    this.stage = stage;
+    this.time = time;
+    this.ticketPrice = Number(ticketPrice); // data type is Number not string
+    this.ticketsRemaining = Number(ticketsRemaining); // correct data type
     this.featured = false;
   }
 
   get formattedPrice() {
-    return `$${this.ticketPrice.toFixed}`;
+    return `$${this.ticketPrice.toFixed(2)}`; //correct method .toFixed()
   }
 
   get hasTickets() {
-    return this.ticketsRemaining < 0;
+    return this.ticketsRemaining <= 0; // !!! logic issue.. name to check
   }
 
   get ticketLabel() {
@@ -27,13 +27,13 @@ export class Performance {
   }
 
   get lineupLabel() {
-    return "Featured performance";
+    return "Regular lineup"; // not a featured performance
   }
 
   static totalAvailableTickets(performances) {
     return performances.reduce(
       (total, performance) => total + performance.ticketsRemaining,
-      "",
+      0, //accumulator is a number and we start from 0
     );
   }
 
@@ -47,6 +47,6 @@ export class Performance {
       0,
     );
 
-    return (total / performances).toFixed(2);
+    return (total / performances.length).toFixed(2); //.length to get the number of performances
   }
 }
