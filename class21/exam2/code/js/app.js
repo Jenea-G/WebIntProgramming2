@@ -6,7 +6,7 @@ import { Performance } from "./Performance.js"; // we have Performace class in t
 
 import { FeaturedPerformance } from "./FeaturedPerformance.js";
 
-import { PerformanceCard } from "./PerformanceCards.js";
+import { PerformanceCard } from "./PerformanceCard.js"; // correct file name
 
 import { renderLoading, renderError, renderPerformance } from "./ui.js"; //SyntaxError: The requested module './ui.js' does not provide an export named 'renderErrors' (at app.js:11:25)
 
