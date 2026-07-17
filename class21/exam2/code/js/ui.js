@@ -41,7 +41,7 @@ export function renderPerformances(performances) {
   performances.forEach((item) => {
     const card = document.createElement("performance-card"); //correct custom element name
 
-    card.data = item;
+    card.performance = item; // passing an object to card
 
     performanceContainer.appendChild(card);
   });
