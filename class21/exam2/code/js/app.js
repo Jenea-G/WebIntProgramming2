@@ -43,8 +43,10 @@ async function loadLineup() {
     performances = data.performances.map((item) => {
       const artist = artists.filter((artist) => artist.id === item.artistId);
 
+      let performance; // create performance here to attach artist
+
       if (item.featured) {
-        return new FeaturedPerformance(
+        performance = new FeaturedPerformance(
           item.id,
           item.title,
           item.artistId,
@@ -53,17 +55,20 @@ async function loadLineup() {
           item.ticketPrice,
           item.ticketsRemaining,
         );
+      } else {
+        performance = new Performance(
+          // to match the imported class name
+          item.id,
+          item.title,
+          item.artistId, // item.artistId property
+          item.stage,
+          item.time,
+          item.ticketPrice,
+          item.ticketsRemaining,
+        );
       }
-
-      return new Performance( // to match the imported class name
-        item.id,
-        item.title,
-        item.artistId, // item.artistId property
-        item.stage,
-        item.time,
-        item.ticketPrice,
-        item.ticketsRemaining,
-      );
+      performance.artist = artist; // attach artist to display artist details
+      return performance;
     });
 
     renderPerformances(performances); // renderPerformances() function
