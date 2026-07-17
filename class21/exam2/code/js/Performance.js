@@ -15,11 +15,11 @@ export class Performance {
   }
 
   get hasTickets() {
-    return this.ticketsRemaining <= 0; // !!! logic issue.. name to check
+    return this.ticketsRemaining > 0; // inverted logic, for app.js function should return "true"
   }
 
   get ticketLabel() {
-    if (this.hasTickets) {
+    if (!this.hasTickets) {
       return "Sold out";
     }
 
