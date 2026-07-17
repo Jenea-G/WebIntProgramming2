@@ -34,6 +34,7 @@ export class Performance {
     return performances.reduce(
       (total, performance) => total + performance.ticketsRemaining,
       0, //accumulator is a number and we start from 0
+      // Lineup couldn't be loaded: TypeError: performances.reduce is not a function at Performance.totalAvailableTickets (Performance.js:34:25)
     );
   }
 

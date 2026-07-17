@@ -14,9 +14,9 @@ export async function getFestivalData() {
     throw new Error("Festival data could not be loaded.");
   }
 
-  const artists = artistResponse.json(); //method lacking ()
+  const artists = await artistResponse.json(); //method lacking ()
 
-  const performances = performanceResponse.json();
+  const performances = await performanceResponse.json(); // added await fixed the error -- // ReferenceError: Cannot access 'artists' before initialization at HTMLButtonElement.loadLineup (app.js:38:26) -- as it got the promise
 
   console.log(artists, performances);
 

@@ -8,7 +8,7 @@ import { FeaturedPerformance } from "./FeaturedPerformance.js";
 
 import { PerformanceCard } from "./PerformanceCard.js"; // correct file name
 
-import { renderLoading, renderError, renderPerformance } from "./ui.js"; //SyntaxError: The requested module './ui.js' does not provide an export named 'renderErrors' (at app.js:11:25)
+import { renderLoading, renderError, renderPerformances } from "./ui.js"; //SyntaxError: The requested module './ui.js' does not provide an export named 'renderErrors' (at app.js:11:25)
 
 const loadButton = document.getElementById("load-lineup"); // correct button id
 
@@ -24,19 +24,21 @@ const sortSelect = document.getElementById("sort-select"); // correct id
 
 const resetButton = document.getElementById("reset-filters"); // correct id
 
-let performances;
+let performances = []; //creating an empty array
 
 async function loadLineup() {
-  renderLoading;
+  renderLoading(); //added () calling a function
 
   loadButton.disabled = true;
 
   try {
-    const data = getFestivalData();
+    const data = await getFestivalData(); // await to get the data
+    console.log("app.js check", data);
 
     const artists = data.artists.map(
       (item) => new Artist(item.id, item.name, item.country, item.genre),
-    );
+    ); //Error: data.artists.map is not a function
+    // ReferenceError: Cannot access 'artists' before initialization at HTMLButtonElement.loadLineup (app.js:38:26)
 
     performances = data.performances.map((item) => {
       const artist = artists.filter((artist) => artist.id === item.artistId);
@@ -45,19 +47,18 @@ async function loadLineup() {
         return new FeaturedPerformance(
           item.id,
           item.title,
-          artist,
+          item.artistId,
           item.stage,
           item.time,
           item.ticketPrice,
           item.ticketsRemaining,
-          item.featured,
         );
       }
 
       return new Performance( // to match the imported class name
         item.id,
         item.title,
-        artist,
+        item.artistId, // item.artistId property
         item.stage,
         item.time,
         item.ticketPrice,
@@ -65,7 +66,7 @@ async function loadLineup() {
       );
     });
 
-    renderPerformance(performances);
+    renderPerformances(performances); // renderPerformances() function
 
     searchInput.disabled = false;
     stageFilter.disabled = false;
@@ -74,7 +75,7 @@ async function loadLineup() {
     sortSelect.disabled = false;
     resetButton.disabled = false;
   } catch (error) {
-    console.log("Lineup loaded:", error);
+    console.log("Lineup couldn't be loaded:", error); // corrected error message
 
     renderError(error.message); // match imported function name
   }

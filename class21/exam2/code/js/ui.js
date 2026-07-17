@@ -1,12 +1,12 @@
 import { Performance } from "./Performance.js";
 
-const performanceContainer = document.getElementById("performances");
+const performanceContainer = document.getElementById("performance-list"); // id correction
 
 const statusOutput = document.getElementById("status");
 
 const performanceCount = document.getElementById("performance-count");
 
-const ticketCount = document.getElementById("available-tickets");
+const ticketCount = document.getElementById("ticket-count"); // id correction
 
 const averagePrice = document.getElementById("average-price");
 
@@ -26,19 +26,20 @@ export function renderError(error) {
   performanceCount.textContent = "0";
 }
 
-export function renderPerformance(performance) {
+export function renderPerformances(performances) {
   // rename to match the function called in app.js
   performanceContainer.innerHTML = "";
 
-  if (!performance) {
+  if (performances.length === 0) {
+    // we create an empty array performances in app.js so it will always exist but could be empty
     statusOutput.textContent =
       "No performances match " + "the current filters.";
 
     return;
   }
 
-  performance.forEach((item) => {
-    const card = document.createElement("performance");
+  performances.forEach((item) => {
+    const card = document.createElement("performance-card"); //correct custom element name
 
     card.data = item;
 
@@ -49,7 +50,7 @@ export function renderPerformance(performance) {
 
   performanceCount.textContent = performances.length;
 
-  ticketCount.textContent = Performance.totalAvailableTickets(performance);
+  ticketCount.textContent = Performance.totalAvailableTickets(performances);
 
-  averagePrice.textContent = Performance.averagePrice;
+  averagePrice.textContent = Performance.averagePrice(performances); //requires an argument
 }
