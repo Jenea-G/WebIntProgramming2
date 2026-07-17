@@ -60,3 +60,35 @@ PerformanceCard.js
 
 **Test:**
 checked for PerformanceCard error in console.
+
+===
+
+## Error on page "Error: Cannot read properties of undefined (reading 'map')"
+
+====
+
+## Promise error.
+
+**File:**  
+api.js
+
+**Problem:**
+
+Uncaught (in promise) Error
+
+- incorrect file name for artists data
+- missing [] in Promise.all()
+- inverted logic throws an error `(artistResponse.ok || performanceResponse.ok)`
+- invalid json parsing
+
+**Fix:**
+
+- corrected file name "./artists.json"
+- changed constants names on line 2,3 `artistResponse, performanceResponse` to `artistPromise, performancePromise` as we fetch promises
+- added [] to passe an array to a Promise.all
+- corected error logic to `(!artistResponse.ok || !performanceResponse.ok)`
+- added () to artistResponse.json()
+- changed the returned data keys to `artists` and `performances` as they are used in app.js and not `artist` and `performance`
+
+- **Test:**
+  Logged the responses `  console.log(responses);` and parsed data `console.log(artists, performances);` to make sure that the data is loaded.
