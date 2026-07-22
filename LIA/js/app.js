@@ -1,10 +1,27 @@
+import { getLocation, getCurrentWeather } from "./api.js";
+
 const btn = document.getElementById("load-weather");
 const statusMessage = document.getElementById("status");
 
-btn.addEventListener("click", () => {
-  statusMessage.textContent = "Loading the weather data.";
-});
+async function getData() {
+  try {
+    statusMessage.textContent = "Loading the weather data.";
 
-navigator.geolocation.getCurrentPosition((position) => {
-  console.log(position.coords.latitude, position.coords.longitude);
+    const location = await getLocation();
+    console.log(location);
+    const weatherData = await getCurrentWeather(
+      location.latitude,
+      location.longitude,
+    );
+
+    console.log(weatherData);
+
+    statusMessage.textContent = "Weather loaded.";
+  } catch (error) {
+    statusMessage.textContent = error.message;
+  }
+}
+
+btn.addEventListener("click", () => {
+  getData();
 });
