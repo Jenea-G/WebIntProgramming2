@@ -57,4 +57,4 @@ export class CurrentWeatherElement extends HTMLElement {
   }
 }
 
-customElements.define("weather-element", CurrentWeatherElement);
+//customElements.define("weather-element", CurrentWeatherElement);
