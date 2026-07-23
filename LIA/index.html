@@ -20,11 +20,103 @@
         </section>
 
         <section>
-            <p id="status"></p>
             <div class="container">
+                <p id="status"></p>
                 <div id="content"></div>
             </div>
         </section>
+
+        <template id="weather-template">
+            <style>
+                .weather-card {
+                    max-width: 300px;
+                    margin: 0 auto;
+                    border: 2px solid grey;
+                    border-radius: 60px;
+                    padding: 100px;
+                    background-image: url(https://cdn.britannica.com/26/176226-050-A6C274BC/white-cumulus-clouds-in-a-summer-sky.jpg);
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    background-blend-mode: overlay;
+                    background-color: rgba(21, 101, 117, 0.49);
+
+                    color: white;
+                }
+
+                .night {
+                    background-image: url(https://jooinn.com/images/stars-in-night-sky.jpg);
+                }
+
+                .text-big {
+                    font-size: 40px;
+                }
+
+                .flex {
+                    display: flex;
+                    justify-content: space-around;
+                    gap: 30px;
+                }
+
+                .condition-table {
+                    width: 100%;
+                    border-collapse: collapse;
+                }
+
+                .condition-table td {
+                    padding: 12px 0;
+                    border-bottom: 1px solid #ddd;
+                }
+
+                .condition-table tr:last-child td {
+                    border-bottom: none;
+                }
+
+                .condition-table td:last-child {
+                    text-align: right;
+                }
+            </style>
+            <div class="weather-card ">
+                <div class="flex">
+                    <div>
+                        <p>Temperature</p>
+                        <p class="text-big temperature"></p>
+                    </div>
+                    <div>
+                        <p>Apparent</p>
+                        <p class="text-big apparent-temperature"></p>
+                    </div>
+
+                </div>
+                <table class="condition-table">
+                    <tr>
+                        <td>Humidity</td>
+                        <td class="humidity"></td>
+                    </tr>
+                    <tr>
+                        <td>Precipitation</td>
+                        <td class="precipitation"></td>
+                    </tr>
+                    <tr>
+                        <td>Wind</td>
+                        <td class="wind"></td>
+                    </tr>
+                    <tr>
+                        <td>Wind gusts</td>
+                        <td class="wind-gusts"></td>
+                    </tr>
+                    <tr>
+                        <td>Rain</td>
+                        <td class="rain"></td>
+                    </tr>
+                    <tr>
+                        <td>Showers</td>
+                        <td class="showers"></td>
+                    </tr>
+                </table>
+            </div>
+
+        </template>
 
     </main>
 
