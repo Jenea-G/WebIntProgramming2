@@ -17,6 +17,7 @@ async function getData() {
     );
 
     console.log(weatherData);
+
     const weather = new CurrentWeather(
       weatherData.current.temperature_2m,
       weatherData.current.relative_humidity_2m,
@@ -24,9 +25,9 @@ async function getData() {
       weatherData.current.precipitation,
       weatherData.current.wind_speed_10m,
       weatherData.current.wind_gusts_10m,
-      weatherData.is_day,
-      weatherData.rain,
-      weatherData.showers,
+      weatherData.current.is_day, // error: weatherData.is_day gives undefined
+      weatherData.current.rain,
+      weatherData.current.showers,
     );
     renderWeather(weather);
 

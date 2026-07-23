@@ -30,6 +30,7 @@ export class CurrentWeatherElement extends HTMLElement {
     if (this.currentWeather.dayPeriod === "Night") {
       card.classList.add("night");
     }
+    //console.log(`current day period = ${this.currentWeather.dayPeriod}`);
 
     this.shadowRoot.querySelector(".temperature").textContent =
       this.currentWeather.formattedTemperature;
