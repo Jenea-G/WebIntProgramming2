@@ -17,10 +17,10 @@ export function renderLocationForm(locationFormDiv) {
 
   form.innerHTML = `
     <p>
-        <label>Latitude <input type="number" name="latitude" id="latitude-input" required></label>
+        <label>Latitude <input style="width: 100px;" type="number" name="latitude" id="latitude-input" min="-90" max="90" step=any required></label>
     </p>
     <p>
-        <label>Longitude <input type="number" name="longitude" id="longitude-input" required></label>
+        <label>Longitude <input style="width: 100px;" type="number" name="longitude" id="longitude-input" min="-180" max="180" step=any required></label>
     </p>
 
     <button type="submit" id="location-btn">submit</button>
