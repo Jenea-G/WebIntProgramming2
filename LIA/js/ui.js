@@ -1,9 +1,6 @@
 import { CurrentWeatherElement } from "./currentWeatherElement.js";
 
-customElements.define("weather-element", CurrentWeatherElement);
-
-export function renderWeather(weather) {
-  const content = document.getElementById("content");
+export function renderWeather(weather, content) {
   content.innerHTML = "";
   const card = document.createElement("weather-element");
   card.currentWeather = weather;

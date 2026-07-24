@@ -4,8 +4,10 @@ import { CurrentWeather } from "./currentWeather.js";
 import { renderLocationForm } from "./ui.js";
 
 const btn = document.getElementById("load-weather");
+const resetBtn = document.getElementById("reset");
 const statusMessage = document.getElementById("status");
 const locationFormDiv = document.getElementById("location-form-div");
+const content = document.getElementById("content");
 
 async function getData(location) {
   try {
@@ -26,7 +28,7 @@ async function getData(location) {
       weatherData.current.rain,
       weatherData.current.showers,
     );
-    renderWeather(weather);
+    renderWeather(weather, content);
 
     statusMessage.textContent = "Weather loaded.";
   } catch (error) {
@@ -36,6 +38,9 @@ async function getData(location) {
 
 btn.addEventListener("click", async () => {
   try {
+    document.body.className = "";
+    locationFormDiv.innerHTML = "";
+    content.innerHTML = "";
     statusMessage.textContent = "Getting your location...";
 
     const location = await getLocation();
@@ -57,4 +62,11 @@ locationFormDiv.addEventListener("location-provided", async (event) => {
     statusMessage.textContent =
       "Your location could not be detected. Enter valid data.";
   }
+});
+
+resetBtn.addEventListener("click", () => {
+  document.body.className = "";
+  locationFormDiv.innerHTML = "";
+  content.innerHTML = "";
+  statusMessage.textContent = "";
 });

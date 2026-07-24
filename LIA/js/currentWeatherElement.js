@@ -26,9 +26,12 @@ export class CurrentWeatherElement extends HTMLElement {
     const card = this.shadowRoot.querySelector(".weather-card");
 
     card.className = "weather-card"; // resets the classes of the card to "weather-card"
+    document.body.className = "";
 
     if (this.currentWeather.dayPeriod === "Night") {
-      card.classList.add("night");
+      document.body.classList.add("night");
+    } else {
+      document.body.classList.add("day");
     }
     //console.log(`current day period = ${this.currentWeather.dayPeriod}`);
 
@@ -58,4 +61,4 @@ export class CurrentWeatherElement extends HTMLElement {
   }
 }
 
-//customElements.define("weather-element", CurrentWeatherElement);
+customElements.define("weather-element", CurrentWeatherElement);
