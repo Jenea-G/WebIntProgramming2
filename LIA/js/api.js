@@ -19,7 +19,10 @@ export function getLocation() {
   });
 }
 
-export async function getCurrentWeather(latitude, longitude) {
+export async function getCurrentWeather(location) {
+  const latitude = location.latitude;
+  const longitude = location.longitude;
+
   let CURRENT_WEATHER_URL =
     WEATHER_URL +
     `?latitude=${latitude}&longitude=${longitude}` +
@@ -28,7 +31,12 @@ export async function getCurrentWeather(latitude, longitude) {
   console.log(CURRENT_WEATHER_URL);
 
   if (!response.ok) {
-    throw new Error(`Unable to load weather. HTTP status: ${response.status}`);
+    console.log(response.status);
+    let message = "";
+    if (response.status === 400) {
+      message = "Invalid location coordinates";
+    }
+    throw new Error(`Unable to load weather. ${message}`);
   }
 
   const data = await response.json();

@@ -1,20 +1,17 @@
 import { getLocation, getCurrentWeather } from "./api.js";
 import { renderWeather } from "./ui.js";
 import { CurrentWeather } from "./currentWeather.js";
+import { renderLocationForm } from "./ui.js";
 
 const btn = document.getElementById("load-weather");
 const statusMessage = document.getElementById("status");
+const locationFormDiv = document.getElementById("location-form-div");
 
-async function getData() {
+async function getData(location) {
   try {
     statusMessage.textContent = "Loading the weather data.";
 
-    const location = await getLocation();
-    console.log(location);
-    const weatherData = await getCurrentWeather(
-      location.latitude,
-      location.longitude,
-    );
+    const weatherData = await getCurrentWeather(location);
 
     console.log(weatherData);
 
@@ -37,6 +34,27 @@ async function getData() {
   }
 }
 
-btn.addEventListener("click", () => {
-  getData();
+btn.addEventListener("click", async () => {
+  try {
+    statusMessage.textContent = "Getting your location...";
+
+    const location = await getLocation();
+    console.log(location);
+
+    await getData(location);
+  } catch (error) {
+    statusMessage.textContent = `Your location could not be detected. Enter it manually.`;
+
+    renderLocationForm(locationFormDiv);
+  }
+});
+
+locationFormDiv.addEventListener("location-provided", async (event) => {
+  try {
+    console.log("location details created");
+    await getData(event.detail);
+  } catch (error) {
+    statusMessage.textContent =
+      "Your location could not be detected. Enter valid data.";
+  }
 });
