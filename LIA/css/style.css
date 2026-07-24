@@ -10,14 +10,27 @@
     margin: 0 auto;
 }
 
-p {
-    margin-bottom: 10px;
-}
 
 section {
     padding: 50px 0 30px;
 }
 
+p {
+    margin-bottom: 10px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
 #content {
     margin-top: 30px;
+}
+
+button {
+    border: 2px solid rgba(0, 0, 139, 0.884);
+    background: rgba(0, 0, 139, 0.1);
+    padding: 7px 16px;
+    border-radius: 15px;
+    min-width: 100px;
 }
